@@ -12,6 +12,7 @@ benchmark "cis_v100" {
   #documentation = file("./cis_v100/docs/cis_overview.md")
   children = [
     benchmark.cis_v100_1,
+    benchmark.cis_v100_2,
   ]
   tags = local.cis_v100_common_tags
 }

@@ -1,17 +1,14 @@
 select
   -- Required Columns
-  'acs:ram::' || account_id || ':user/' || user_name as resource,
+  'arn:' || partition || ':iam::' || account_id || ':user/' || user_name || '/accesskey/' || access_key_id as resource,
   case
-    when user_name = '<root>' then 'skip'
-    when password_last_changed < current_date - interval '90 days' and password_exist then 'alarm'
+    when create_date <= (current_date - interval '90' day) then 'alarm'
     else 'ok'
-  end as status,
-  case
-    when user_name = '<root>' then ' skipped for root user.'
-    when password_last_changed < current_date - interval '90 days' and password_exist then  'Password not updated as recommended.'
-    else 'Password updated as recommended.'
-  end as reason,
+  end status,
+  user_name || ' ' || access_key_id || ' created ' || to_char(create_date , 'DD-Mon-YYYY') ||
+    ' (' || extract(day from current_timestamp - create_date) || ' days).'
+  as reason,
   -- Additional Dimensions
   account_id
 from
-  alicloud_ram_credential_report;
+  aws_iam_access_key;

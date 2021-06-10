@@ -1,15 +1,16 @@
 select
   -- Required Columns
-  'acs:ram::' || account_id || ':user/' || name as resource,
+  'acs:ram::' || account_id || ':user/' || user_name as resource,
   case
-    when mfa_enabled then 'ok'
-    else 'alarm'
+    when password_exist and not mfa_active then 'alarm'
+    else 'ok'
   end as status,
   case
-    when mfa_enabled then name || ' MFA enabled.'
-    else name || ' MFA disabled.'
+    when not password_exist then user_name || ' password login disabled.'
+    when password_exist and not mfa_active then user_name || ' password login enabled but no MFA device configured.'
+    else user_name || ' password login enabled and MFA device configured.'
   end as reason,
   -- Additional Dimensions
   account_id
 from
-  alicloud_ram_user;
+  alicloud_ram_credential_report;
