@@ -6,8 +6,8 @@ select
     else 'alarm'
   end as status,
   case
-    when minimum_password_length >= 14 then 'length policy set.'
-    else 'length policy not set.'
+    when minimum_password_length >= 14 then 'Minimum password length policy set to ' || minimum_password_length || '.'
+    else 'Minimum password length policy not set.'
   end as "reason",
   -- Additional Dimensions
   account_id

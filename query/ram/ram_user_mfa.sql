@@ -6,8 +6,8 @@ select
     else 'alarm'
   end as status,
   case
-    when mfa_enabled then name || ' mfa enabled.'
-    else name || ' mfa disabled.'
+    when mfa_enabled then name || ' MFA enabled.'
+    else name || ' MFA disabled.'
   end as reason,
   -- Additional Dimensions
   account_id

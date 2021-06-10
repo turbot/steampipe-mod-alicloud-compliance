@@ -6,8 +6,8 @@ select
     else 'alarm'
   end as status,
   case
-    when user_last_logon < current_date - interval '90 days' or user_last_logon is null then 'root user not used.'
-    else 'root user used.'
+    when user_last_logon < current_date - interval '90 days' or user_last_logon is null then 'Root account not used.'
+    else 'Root account used.'
   end as reason,
   -- Additional Dimensions
   account_id

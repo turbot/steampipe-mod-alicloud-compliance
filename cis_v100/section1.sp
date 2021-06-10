@@ -69,7 +69,7 @@ control "cis_v100_1_3" {
 control "cis_v100_1_4" {
   title         = "1.4 Ensure that multi-factor authentication is enabled for all RAM users that have a console password"
   description   = "Multi-Factor Authentication (MFA) adds an extra layer of protection on top of a username and password. With MFA enabled, when a user logs on to Alibaba Cloud, they will be prompted for their user name and password followed by an authentication code from their virtual MFA device. It is recommended that MFA be enabled for all users that have a console password."
-  sql           = query.ram_root_account_mfa_enabled.sql
+  sql           = query.ram_user_mfa.sql
   #documentation = file("./cis_v100/docs/cis_v100_1_4.md")
 
   tags = merge(local.cis_v100_1_common_tags, {

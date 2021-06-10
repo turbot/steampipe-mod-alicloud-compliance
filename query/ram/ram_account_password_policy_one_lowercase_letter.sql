@@ -6,8 +6,8 @@ select
     else 'alarm'
   end as status,
   case
-    when require_lowercase_characters then 'Lowercase policy set.'
-    else 'Lowercase policy not set.'
+    when require_lowercase_characters then 'Lowercase password policy set.'
+    else 'Lowercase password policy not set.'
   end as reason,
   -- Additional Dimensions
   account_id

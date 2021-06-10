@@ -6,8 +6,8 @@ select
     else 'ok'
   end as status,
   case
-    when access_key_1_active and access_key_2_active then 'Access key exists.'
-    else 'Access key not exists.'
+    when access_key_1_active and access_key_2_active then 'Root account access key exists.'
+    else 'No root account access keys exist.'
   end as reason,
   -- Additional Dimensions
   account_id
