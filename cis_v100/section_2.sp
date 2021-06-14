@@ -179,7 +179,7 @@ control "cis_v100_2_11" {
 }
 
 control "cis_v100_2_12" {
-  title         = "2.11 Ensure log monitoring and alerts are set up for VPC network route changes"
+  title         = "2.12 Ensure log monitoring and alerts are set up for VPC network route changes"
   description   = "It is recommended that a metric filter and alarm be established for VPC network route changes."
   sql           = query.manual_control.sql
   #documentation = file("./cis_v100/docs/cis_v100_2_12.md")

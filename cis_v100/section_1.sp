@@ -65,7 +65,7 @@ control "cis_v100_1_3" {
     cis_type    = "manual"
   })
 }
-#check
+
 control "cis_v100_1_4" {
   title         = "1.4 Ensure that multi-factor authentication is enabled for all RAM users that have a console password"
   description   = "Multi-Factor Authentication (MFA) adds an extra layer of protection on top of a username and password. With MFA enabled, when a user logs on to Alibaba Cloud, they will be prompted for their user name and password followed by an authentication code from their virtual MFA device. It is recommended that MFA be enabled for all users that have a console password."
@@ -132,7 +132,7 @@ control "cis_v100_1_8" {
 }
 
 control "cis_v100_1_9" {
-  title         = "1.8 Ensure RAM password policy require at least one symbol"
+  title         = "1.9 Ensure RAM password policy require at least one symbol"
   description   = "RAM password policies can be used to ensure password complexity. It is recommended that the password policy require at least one symbol."
   sql           = query.ram_account_password_policy_one_symbol.sql
   #documentation = file("./cis_v100/docs/cis_v100_1_9.md")
