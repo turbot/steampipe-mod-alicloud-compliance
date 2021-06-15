@@ -1,6 +1,6 @@
 select
   -- Required Columns
-  'arn:acs:oss:::' || name as resource,
+  'acs:oss:::' || name as resource,
   case
     when logging ->> 'TargetBucket' <> '' then 'ok'
     else 'alarm'

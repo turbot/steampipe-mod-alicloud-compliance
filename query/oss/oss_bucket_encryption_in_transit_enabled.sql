@@ -17,7 +17,7 @@ with ssl_ok as (
 )
 select
   -- Required Columns
-  'arn:acs:oss:::' || b.name as resource,
+  'acs:oss:::' || b.name as resource,
   case
     when ok.status = 'ok' then 'ok'
     else 'alarm'

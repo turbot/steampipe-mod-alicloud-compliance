@@ -1,6 +1,6 @@
 select
   -- Required Columns
-  'arn:acs:oss:::' || name as resource,
+  'acs:oss:::' || name as resource,
   case
     when acl = 'private' then 'ok'
     else 'alarm'

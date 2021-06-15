@@ -1,6 +1,6 @@
 select
   -- Required Columns
-  'arn:acs:oss:::' || b.name as resource,
+  'acs:oss:::' || b.name as resource,
   case
     when server_side_encryption ->> 'SSEAlgorithm' = 'KMS' and k.creator = 'Oss' then 'ok'
     else 'alarm'
