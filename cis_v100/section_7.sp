@@ -74,7 +74,7 @@ control "cis_v100_7_6" {
 control "cis_v100_7_7" {
   title         = "7.7 Ensure Network policy is enabled on Kubernetes Engine Clusters"
   description   = "A network policy is a specification of how groups of pods are allowed to communicate with each other and other network endpoints. NetworkPolicy resources use labels to select pods and define rules which specify what traffic is allowed to the selected pods. The Kubernetes Network Policy API allows the cluster administrator to specify what pods are allowed to communicate with each other."
-  sql           = query.cs_kubernetes_cluster_network_terway_enabled.sql
+  sql           = query.cs_kubernetes_cluster_terway_network_enabled.sql
   #documentation = file("./cis_v100/docs/cis_v100_7_7.md")
 
   tags = merge(local.cis_v100_7_common_tags, {
@@ -87,7 +87,7 @@ control "cis_v100_7_7" {
 control "cis_v100_7_8" {
   title         = "7.8 Ensure ENI multiple IP mode support for Kubernetes Cluster"
   description   = "Alibaba Cloud ENI (Elastic Network Interface) has supported assign ranges of internal IP addresses as aliases to a single virtual machine's ENI network interfaces. This is useful if you have lots of services running on a VM and you want to assign each service a different IP address without quota limitation."
-  sql           = query.cs_kubernetes_cluster_network_terway_enabled.sql
+  sql           = query.cs_kubernetes_cluster_terway_network_enabled.sql
   #documentation = file("./cis_v100/docs/cis_v100_7_8.md")
 
   tags = merge(local.cis_v100_7_common_tags, {
