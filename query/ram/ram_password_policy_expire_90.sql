@@ -6,8 +6,8 @@ select
     else 'alarm'
   end as status,
   case
-    when max_password_age is null then 'No Password expire policy set.'
-    else 'Password expire policy set to ' || max_password_age || '.'
+    when max_password_age is null then 'Password expiration not set.'
+    else 'Password expiration set to ' || max_password_age || ' days.'
   end as reason,
   -- Additional Dimensions
   a.account_id

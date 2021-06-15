@@ -7,8 +7,8 @@ select
   end as status,
   case
     when minimum_password_length is null then 'No password policy set.'
-    when require_uppercase_characters then 'Uppercase password policy set.'
-    else 'Uppercase password policy not set.'
+    when require_uppercase_characters then 'Uppercase character required.'
+    else 'Uppercase character not required.'
   end as reason,
   -- Additional Dimensions
   a.account_id

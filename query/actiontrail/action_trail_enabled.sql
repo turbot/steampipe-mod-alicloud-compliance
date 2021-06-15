@@ -12,8 +12,8 @@ select
     when
       trail_region = 'All'
       and oss_bucket_name is not null
-      and sls_project_arn is not null then name ' is configured to export copies of all Log entries'
-    else name ' is not configured to export copies of all Log entries'
+      and sls_project_arn is not null then name ' is configured to export copies of all log entries'
+    else name ' is not configured to export copies of all log entries'
   end as reason,
   -- Additional Dimensions
   home_region,

@@ -2,13 +2,13 @@ select
   -- Required Columns
   'acs:ram::' || a.account_id as resource,
   case
-    when password_reuse_prevention >= 5 then 'ok'
+    when password_reuse_prevention = 5 then 'ok'
     else 'alarm'
   end as status,
   case
     when minimum_password_length is null then 'No password policy set.'
     when password_reuse_prevention is null then 'Password reuse prevention not set.'
-    else 'Password reuse prevention policy set to ' || password_reuse_prevention || '.'
+    else 'Password reuse prevention set to ' || password_reuse_prevention || '.'
   end as reason,
   -- Additional Dimensions
   a.account_id

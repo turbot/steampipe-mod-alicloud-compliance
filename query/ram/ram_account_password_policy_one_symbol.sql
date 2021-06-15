@@ -7,8 +7,8 @@ select
   end as status,
   case
     when minimum_password_length is null then 'No password policy set.'
-    when require_symbols then 'Password policy for symbol set'
-    else 'Password policy for symbol not set'
+    when require_symbols then 'Symbol required.'
+    else 'Symbol not required.'
   end as reason,
   -- Additional Dimensions
   a.account_id

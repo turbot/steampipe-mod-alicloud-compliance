@@ -1,6 +1,6 @@
 with user_attached_with_policy as (
   select
-    name as user_name,
+    distinct name as user_name,
     attached_policy
   from
     alicloud_ram_user,
@@ -9,18 +9,18 @@ with user_attached_with_policy as (
     attached_policy != '[]'
 )
 select
-	-- Required Columns
+  -- Required Columns
   'acs:ram::' || account_id || ':user/' || name as resource,
-	case
-		when u.name = p.user_name then 'alarm'
+ case
+    when u.name = p.user_name then 'alarm'
     else 'ok'
-	end as status,
+  end as status,
   case
-		when u.name = p.user_name then name || ' have direct policy attached.'
+    when u.name = p.user_name then name || ' have direct policy attached.'
     else name || ' not have any direct policy attached.'
-	end as reason,
+  end as reason,
   -- Additional Dimensions
   account_id
 from
-	alicloud_ram_user u
-	left join user_attached_with_policy p on u.name = p.user_name;
+  alicloud_ram_user u
+  left join user_attached_with_policy p on u.name = p.user_name;

@@ -7,8 +7,8 @@ select
   end as status,
   case
     when minimum_password_length is null then 'No password policy set.'
-    when require_numbers then 'Password policy for number set.'
-    else 'Password policy for number not set.'
+    when require_numbers then 'Number required.'
+    else 'Number not required.'
   end as reason,
   -- Additional Dimensions
   a.account_id

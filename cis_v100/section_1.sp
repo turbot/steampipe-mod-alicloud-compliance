@@ -30,7 +30,7 @@ benchmark "cis_v100_1" {
 control "cis_v100_1_1" {
   title         = "1.1 Avoid the use of the 'root' account"
   description   = "An Alibaba Cloud account can be viewed as a 'root' account. The 'root' account has full control permissions to all cloud products and resources under such account. It is highly recommended that the use of this account should be avoided."
-  sql           = query.ram_root_account_use_avoided.sql
+  sql           = query.ram_root_account_unused.sql
   #documentation = file("./cis_v100/docs/cis_v100_1_1.md")
 
   tags = merge(local.cis_v100_1_common_tags, {
@@ -43,7 +43,7 @@ control "cis_v100_1_1" {
 control "cis_v100_1_2" {
   title         = "1.2 Ensure no root account access key exists"
   description   = "Access keys provide programmatic access to a given Alibaba Cloud account. It is recommended that all access keys associated with the root account be removed."
-  sql           = query.ram_root_account_access_key.sql
+  sql           = query.ram_root_account_no_access_keys.sql
   #documentation = file("./cis_v100/docs/cis_v100_1_2.md")
 
   tags = merge(local.cis_v100_1_common_tags, {
@@ -69,7 +69,7 @@ control "cis_v100_1_3" {
 control "cis_v100_1_4" {
   title         = "1.4 Ensure that multi-factor authentication is enabled for all RAM users that have a console password"
   description   = "Multi-Factor Authentication (MFA) adds an extra layer of protection on top of a username and password. With MFA enabled, when a user logs on to Alibaba Cloud, they will be prompted for their user name and password followed by an authentication code from their virtual MFA device. It is recommended that MFA be enabled for all users that have a console password."
-  sql           = query.ram_user_mfa.sql
+  sql           = query.ram_user_console_access_mfa_enabled.sql
   #documentation = file("./cis_v100/docs/cis_v100_1_4.md")
 
   tags = merge(local.cis_v100_1_common_tags, {
@@ -173,7 +173,7 @@ control "cis_v100_1_11" {
 control "cis_v100_1_12" {
   title         = "1.12 Ensure RAM password policy prevents password reuse"
   description   = "It is recommended that the password policy prevent the reuse of passwords."
-  sql           = query.ram_account_password_policy_reuse.sql
+  sql           = query.ram_account_password_policy_reuse_5.sql
   #documentation = file("./cis_v100/docs/cis_v100_1_12.md")
 
   tags = merge(local.cis_v100_1_common_tags, {
@@ -199,7 +199,7 @@ control "cis_v100_1_13" {
 control "cis_v100_1_14" {
   title         = "1.14 Ensure RAM password policy temporarily blocks logon after 5 incorrect logon attempts within an hour"
   description   = "RAM password policies can require passwords to be expired after a given number of days. It is recommended that the password policy expire passwords after 90 days or less."
-  sql           = query.ram_password_policy_incorrect_login_block.sql
+  sql           = query.ram_password_policy_max_login_attempts_5.sql
   #documentation = file("./cis_v100/docs/cis_v100_1_14.md")
 
   tags = merge(local.cis_v100_1_common_tags, {
@@ -212,7 +212,7 @@ control "cis_v100_1_14" {
 control "cis_v100_1_16" {
   title         = "1.16 Ensure RAM policies are attached only to groups or roles"
   description   = "By default, RAM users, groups, and roles have no access to Alibaba Cloud resources. RAM policies are the means by which privileges are granted to users, groups, or roles. It is recommended that RAM policies be applied directly to groups and roles but not users."
-  sql           = query.ram_policy_attached_to_group_and_role.sql
+  sql           = query.ram_user_no_policies.sql
   #documentation = file("./cis_v100/docs/cis_v100_1_16.md")
 
   tags = merge(local.cis_v100_1_common_tags, {
