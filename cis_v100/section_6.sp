@@ -62,7 +62,7 @@ control "cis_v100_6_3" {
 control "cis_v100_6_4" {
   title         = "6.4 Ensure that 'Auditing' Retention is 'greater than 6 months'"
   description   = "Database SQL Audit Retention should be configured to be greater than 90 days."
-  sql           = query.rds_instance_sql_audit_retention_period_6_months.sql
+  sql           = query.rds_instance_sql_audit_retention_period_180_days.sql
   #documentation = file("./cis_v100/docs/cis_v100_6_4.md")
 
   tags = merge(local.cis_v100_6_common_tags, {
@@ -73,7 +73,7 @@ control "cis_v100_6_4" {
 }
 
 control "cis_v100_6_5" {
-  title         = "6.5 Ensure that 'TDE' is set to 'Enabled' on for applicable database instance'"
+  title         = "6.5 Ensure that 'TDE' is set to 'Enabled' on for applicable database instance"
   description   = "Enable Transparent Data Encryption on every RDS instance."
   sql           = query.rds_instance_tde_enabled.sql
   #documentation = file("./cis_v100/docs/cis_v100_6_5.md")
@@ -88,7 +88,7 @@ control "cis_v100_6_5" {
 control "cis_v100_6_7" {
   title         = "6.7 Ensure parameter 'log_connections' is set to 'ON' for PostgreSQL Database"
   description   = "Enable log_connections on PostgreSQL Servers."
-  sql           = query.rds_instance_postgresql_log_connections_enabled.sql
+  sql           = query.rds_instance_postgresql_log_connections_parameter_on.sql
   #documentation = file("./cis_v100/docs/cis_v100_6_7.md")
 
   tags = merge(local.cis_v100_6_common_tags, {
@@ -101,7 +101,7 @@ control "cis_v100_6_7" {
 control "cis_v100_6_8" {
   title         = "6.8 Ensure server parameter 'log_disconnections' is set to 'ON' for PostgreSQL Database Server"
   description   = "Enable log_disconnections on PostgreSQL Servers."
-  sql           = query.rds_instance_postgresql_log_disconnections_enabled.sql
+  sql           = query.rds_instance_postgresql_log_disconnections_parameter_on.sql
   #documentation = file("./cis_v100/docs/cis_v100_6_8.md")
 
   tags = merge(local.cis_v100_6_common_tags, {
@@ -114,7 +114,7 @@ control "cis_v100_6_8" {
 control "cis_v100_6_9" {
   title         = "6.9 Ensure server parameter 'log_duration is set to 'ON' for PostgreSQL Database Server"
   description   = "Enable log_duration on PostgreSQL Servers."
-  sql           = query.rds_instance_postgresql_log_duration_enabled.sql
+  sql           = query.rds_instance_postgresql_log_duration_parameter_on.sql
   #documentation = file("./cis_v100/docs/cis_v100_6_9.md")
 
   tags = merge(local.cis_v100_6_common_tags, {

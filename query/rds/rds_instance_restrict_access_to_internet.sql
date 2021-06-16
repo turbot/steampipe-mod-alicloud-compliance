@@ -6,8 +6,8 @@ select
     else 'ok'
   end as status,
   case
-    when security_ips :: jsonb ? '0.0.0.0/0' then title || ' open to world.'
-    else title || ' not open to world.'
+    when security_ips :: jsonb ? '0.0.0.0/0' then title || ' publicly accessible.'
+    else title || ' not publicly accessible.'
   end as reason,
   -- Additional Dimensions
   region,

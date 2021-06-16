@@ -20,7 +20,7 @@ benchmark "cis_v100_7" {
 }
 
 control "cis_v100_7_1" {
-  title         = "7.1 Ensure Log Service is set to ‘Enabled’ on Kubernetes Engine Clusters"
+  title         = "7.1 Ensure Log Service is set to 'Enabled' on Kubernetes Engine Clusters"
   description   = "Log Service is a complete real-time data logging service on Alibaba Cloud to support collection, shipping, search, storage and analysis for logs. It includes a user interface to call the Log Viewer and an API to management logs pragmatically. Log Service could automatically collect, process, and store your container and audit logs in a dedicated, persistent datastore. Container logs are collected from your containers. Audit logs are collected from the kube-apiserver or the deployed ingress. Events are logs about activity in the cluster, such as the deleting of Pods or Secrets."
   sql           = query.manual_control.sql
   #documentation = file("./cis_v100/docs/cis_v100_7_1.md")

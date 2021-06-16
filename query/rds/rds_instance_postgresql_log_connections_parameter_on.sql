@@ -6,8 +6,8 @@ select
     else 'alarm'
   end as status,
   case
-    when p ->> 'ParameterValue' = 'on' then title || ' log disconnections enabled.'
-    else title || ' log disconnections disabled.'
+    when p ->> 'ParameterValue' = 'on' then title || ' ''log_connections'' parameter set to ''on''.'
+    else title || ' ''log_connections'' parameter set to ''off''.'
   end as reason,
   -- Additional Dimensions
   region,
@@ -16,4 +16,4 @@ from
   alicloud_rds_instance,
   jsonb_array_elements(parameters -> 'RunningParameters' -> 'DBInstanceParameter') as p
 where
-  engine = 'PostgreSQL' and p ->> 'ParameterName' = 'log_disconnections';
+  engine = 'PostgreSQL' and p ->> 'ParameterName' = 'log_connections';
