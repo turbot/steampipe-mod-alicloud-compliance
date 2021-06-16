@@ -5,7 +5,7 @@ select
     when sql_collector_retention > 180 then 'ok'
     else 'alarm'
   end as status,
-  title || ' SQL audit enabled with retention period ' || sql_collector_retention || '.'
+  title || ' SQL audit enabled with retention period ' || sql_collector_retention || ' days.'
   as reason,
   -- Additional Dimensions
   region,
