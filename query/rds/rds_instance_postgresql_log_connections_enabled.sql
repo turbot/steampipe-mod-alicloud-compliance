@@ -6,8 +6,8 @@ select
     else 'alarm'
   end as status,
   case
-    when p ->> 'ParameterValue' = 'on' then title || ' log connection enabled.'
-    else title || ' log connection not enabled.'
+    when p ->> 'ParameterValue' = 'on' then title || ' log connections enabled.'
+    else title || ' log connections not enabled.'
   end as reason,
   -- Additional Dimensions
   region,

@@ -6,7 +6,7 @@ select
     else 'alarm'
   end as status,
   case
-    when sql_collector_retention > 180 then title || ' SQL audit anabled with retention period greater than equals 6 months.'
+    when sql_collector_retention > 180 then title || ' SQL audit enabled with retention period greater than equals 6 months.'
     else title || ' SQL audit not enabled with retention greater than equals 6 months.'
   end as reason,
   -- Additional Dimensions

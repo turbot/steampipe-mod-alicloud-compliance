@@ -6,8 +6,8 @@ select
     else 'alarm'
   end as status,
   case
-    when tde_status = 'Enabled' then title || ' TDE Enabled.'
-    else db_instance_id || ' TDE not enabled.'
+    when tde_status = 'Enabled' then title || ' TDE enabled.'
+    else db_instance_id || ' TDE disabled.'
   end as reason,
   -- Additional Dimensions
   region,

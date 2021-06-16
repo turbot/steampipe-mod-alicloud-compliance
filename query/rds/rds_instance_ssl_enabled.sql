@@ -6,8 +6,8 @@ select
     else 'alarm'
   end as status,
   case
-    when ssl_status = 'Enabled' then title || ' SSL Enabled.'
-    else title || ' SSL Disabled.'
+    when ssl_status = 'Enabled' then title || ' SSL enabled.'
+    else title || ' SSL disabled.'
   end as reason,
   -- Additional Dimensions
   region,

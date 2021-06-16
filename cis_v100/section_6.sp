@@ -88,7 +88,7 @@ control "cis_v100_6_5" {
 control "cis_v100_6_7" {
   title         = "6.7 Ensure parameter 'log_connections' is set to 'ON' for PostgreSQL Database"
   description   = "Enable log_connections on PostgreSQL Servers."
-  sql           = query.rds_instance_postgresql_log_connection_enabled.sql
+  sql           = query.rds_instance_postgresql_log_connections_enabled.sql
   #documentation = file("./cis_v100/docs/cis_v100_6_7.md")
 
   tags = merge(local.cis_v100_6_common_tags, {
@@ -101,7 +101,7 @@ control "cis_v100_6_7" {
 control "cis_v100_6_8" {
   title         = "6.8 Ensure server parameter 'log_disconnections' is set to 'ON' for PostgreSQL Database Server"
   description   = "Enable log_disconnections on PostgreSQL Servers."
-  sql           = query.rds_instance_postgresql_log_disconnection_enabled.sql
+  sql           = query.rds_instance_postgresql_log_disconnections_enabled.sql
   #documentation = file("./cis_v100/docs/cis_v100_6_8.md")
 
   tags = merge(local.cis_v100_6_common_tags, {
