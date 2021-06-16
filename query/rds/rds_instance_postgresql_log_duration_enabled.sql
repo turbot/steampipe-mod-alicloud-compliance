@@ -7,7 +7,7 @@ select
   end as status,
   case
     when p ->> 'ParameterValue' = 'on' then title || ' log duration enabled.'
-    else title || ' log duration not enabled.'
+    else title || ' log duration disabled.'
   end as reason,
   -- Additional Dimensions
   region,

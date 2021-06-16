@@ -7,7 +7,7 @@ select
   end as status,
   case
     when sql_collector_policy ->> 'SQLCollectorStatus' = 'Enable' then title || ' SQL audit enabled.'
-    else title || ' SQL audit not enabled.'
+    else title || ' SQL audit disabled.'
   end as reason,
   -- Additional Dimensions
   region,

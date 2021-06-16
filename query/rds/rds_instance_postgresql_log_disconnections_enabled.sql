@@ -7,7 +7,7 @@ select
   end as status,
   case
     when p ->> 'ParameterValue' = 'on' then title || ' log disconnections enabled.'
-    else title || ' log disconnections not enabled.'
+    else title || ' log disconnections disabled.'
   end as reason,
   -- Additional Dimensions
   region,
