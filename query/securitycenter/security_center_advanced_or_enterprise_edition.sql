@@ -8,7 +8,7 @@ select
   case
     when version in ('2','3') then 'Security Center Enterprise edition enabled.'
     when version in ('5') then 'Security Center Advanced edition enabled.'
-    else 'Security Center Enterprise or Advanced not enabled.'
+    else 'Security Center Enterprise or Advanced edition disabled.'
   end as reason,
   -- Additional Dimensions
   region,
