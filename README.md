@@ -4,7 +4,7 @@
 
 **Includes full support for v1.0.0 CIS benchmarks:**
 
-![image](https://raw.githubusercontent.com/turbot/steampipe-mod-alicloud-compliance/main/docs/alicloud_cis_v100_console.png)
+![image](https://github.com/turbot/steampipe-mod-alicloud-compliance/blob/main/docs/alicloud_cis_v100_console.png?raw=true)
 
 Includes support for:
 * [Alibaba Cloud CIS v1.0.0](https://hub.steampipe.io/mods/turbot/alicloud_compliance/controls/benchmark.cis_v100)
