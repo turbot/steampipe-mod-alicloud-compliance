@@ -7,7 +7,7 @@ select
     else 'alarm'
   end as status,
   case
-    when  engine != 'PostgreSQL' then title || ' is ' || engine || ' server.'
+    when engine != 'PostgreSQL' then title || ' is ' || engine || ' server.'
     when parameters -> 'RunningParameters' -> 'DBInstanceParameter' @> '[{"ParameterName": "log_connections", "ParameterValue": "on"}]' then title || ' ''log_connections'' parameter set to ''on''.'
     else title || ' ''log_connections'' parameter set to ''off''.'
   end as reason,

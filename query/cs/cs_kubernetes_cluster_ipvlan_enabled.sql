@@ -10,20 +10,20 @@ with network_policy_enabled as (
 )
 select
   -- Required Columns
-  'arn:acs:cs:' || region || ':' || account_id || ':cluster/' || a.cluster_id as resource,
+  'arn:acs:cs:' || a.region || ':' || a.account_id || ':cluster/' || a.cluster_id as resource,
   case
     when a.meta_data -> 'Addons' @> '[{"name": "flannel"}]' then 'skip'
     when n.cluster_id is null then 'alarm'
     else 'ok'
   end as status,
   case
-    when a.meta_data -> 'Addons' @> '[{"name": "flannel"}]' then title || ' does not support IPVlan.'
-    when n.cluster_id is null then title || ' IPVlan disabled.'
-    else title || ' IPVlan enabled.'
+    when a.meta_data -> 'Addons' @> '[{"name": "flannel"}]' then a.title || ' does not support IPVlan.'
+    when n.cluster_id is null then a.title || ' IPVlan disabled.'
+    else a.title || ' IPVlan enabled.'
   end as reason,
   -- Additional Dimensions
-  region,
-  account_id
+  a.region,
+  a.account_id
 from
   alicloud_cs_kubernetes_cluster a
   left join network_policy_enabled n on a.cluster_id = n.cluster_id;
