@@ -2,8 +2,7 @@ select
   -- Required Columns
   account_id as resource,
   case
-    when version in ('2','3') then 'ok'
-    when version in ('5') then 'ok'
+    when version in ('2', '3', '5') then 'ok'
     else 'alarm'
   end as status,
   case
