@@ -6,8 +6,8 @@ select
     else 'alarm'
   end as status,
   case
-    when instance_network_type = 'vpc' then title || ' has VPC network configured.'
-    else title || ' has legacy network configured.'
+    when instance_network_type = 'vpc' then title || ' has VPC network.'
+    else title || ' has legacy network.'
   end as reason,
   -- Additional Dimensions
   region,
