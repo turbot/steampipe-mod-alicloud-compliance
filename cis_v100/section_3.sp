@@ -20,7 +20,7 @@ benchmark "cis_v100_3" {
 control "cis_v100_3_1" {
   title         = "3.1 Ensure legacy networks does not exist"
   description   = "In order to prevent use of legacy networks, ECS instances should not have a legacy network configured."
-  sql           = query.ecs_instance_configured_vpc_network_type.sql
+  sql           = query.ecs_instance_with_no_legacy_network.sql
   #documentation = file("./cis_v100/docs/cis_v100_3_1.md")
 
   tags = merge(local.cis_v100_3_common_tags, {

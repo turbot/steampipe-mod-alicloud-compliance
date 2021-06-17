@@ -62,7 +62,7 @@ control "cis_v100_5_3" {
 control "cis_v100_5_4" {
   title         = "5.4 Ensure that 'Secure transfer required' is set to 'Enabled'"
   description   = "Enable the data encryption in transit."
-  sql           = query.oss_bucket_encryption_in_transit_enabled.sql
+  sql           = query.oss_bucket_enforces_ssl.sql
   #documentation = file("./cis_v100/docs/cis_v100_5_4.md")
 
   tags = merge(local.cis_v100_5_common_tags, {
@@ -101,7 +101,7 @@ control "cis_v100_5_6" {
 control "cis_v100_5_8" {
   title         = "5.8 Ensure server-side encryption is set to ‘Encrypt with Service Key’"
   description   = "Enable server-side encryption (Encrypt with Service Key) for objects."
-  sql           = query.oss_bucket_server_side_encryption_servcie_key.sql
+  sql           = query.oss_bucket_encrypted_with_servcie_key.sql
   #documentation = file("./cis_v100/docs/cis_v100_5_8.md")
 
   tags = merge(local.cis_v100_5_common_tags, {
@@ -114,7 +114,7 @@ control "cis_v100_5_8" {
 control "cis_v100_5_9" {
   title         = "5.9 Ensure server-side encryption is set to ‘Encrypt with BYOK’"
   description   = "Enable server-side encryption (Encrypt with BYOK) for objects."
-  sql           = query.oss_bucket_server_side_encryption_byok.sql
+  sql           = query.oss_bucket_encrypted_with_byok.sql
   #documentation = file("./cis_v100/docs/cis_v100_5_8.md")
 
   tags = merge(local.cis_v100_5_common_tags, {
@@ -123,5 +123,3 @@ control "cis_v100_5_9" {
     cis_type    = "manual"
   })
 }
-
-

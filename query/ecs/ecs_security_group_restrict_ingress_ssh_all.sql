@@ -10,7 +10,7 @@ with bad_groups as (
     and p ->> 'SourceCidrIp' = '0.0.0.0/0'
     and (
       p ->> 'PortRange' in ('-1/-1', '22/22')
-      or (22 between split_part(p ->> 'PortRange' :: text, '/', 1) :: int and split_part(p ->> 'PortRange' :: text, '/', 2) :: int)
+      or (22 between split_part(p ->> 'PortRange', '/', 1) :: int and split_part(p ->> 'PortRange', '/', 2) :: int)
     )
 )
 select

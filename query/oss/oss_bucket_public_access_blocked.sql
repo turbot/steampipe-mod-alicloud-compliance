@@ -6,8 +6,8 @@ select
     else 'alarm'
   end as status,
   case
-    when acl = 'private' then title || ' blocks public access.'
-    else name || ' does not blocks public access.'
+    when acl = 'private' then title || ' not publicly accessible.'
+    else name || ' publicly accessible.'
   end as reason,
   -- Additional Dimensions
   region,

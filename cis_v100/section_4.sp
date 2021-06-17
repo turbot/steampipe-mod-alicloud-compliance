@@ -46,7 +46,7 @@ control "cis_v100_4_2" {
 control "cis_v100_4_3" {
   title         = "4.3 Ensure no security groups allow ingress from 0.0.0.0/0 to port 22"
   description   = "Security groups provide stateful filtering of ingress/egress network traffic to Alibaba Cloud resources. It is recommended that no security group allows unrestricted ingress access to port 22."
-  sql           = query.ecs_security_group_restrict_ssh.sql
+  sql           = query.ecs_security_group_restrict_ingress_ssh_all.sql
   #documentation = file("./cis_v100/docs/cis_v100_4_3.md")
 
   tags = merge(local.cis_v100_4_common_tags, {
@@ -59,7 +59,7 @@ control "cis_v100_4_3" {
 control "cis_v100_4_4" {
   title         = "4.4 Ensure no security groups allow ingress from 0.0.0.0/0 to port 3389"
   description   = "Security groups provide filtering of ingress/egress network traffic to Aliyun resources. It is recommended that no security group allows unrestricted ingress access to port 3389."
-  sql           = query.ecs_security_group_restrict_rdp.sql
+  sql           = query.ecs_security_group_restrict_ingress_rdp_all.sql
   #documentation = file("./cis_v100/docs/cis_v100_4_4.md")
 
   tags = merge(local.cis_v100_4_common_tags, {
