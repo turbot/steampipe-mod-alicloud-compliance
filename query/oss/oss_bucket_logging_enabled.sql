@@ -7,7 +7,7 @@ select
   end as status,
   case
     when logging ->> 'TargetBucket' <> '' then title || ' logging enabled.'
-    else title || ' logging not enabled.'
+    else title || ' logging disabled.'
   end as reason,
   -- Additional Dimensions
   region,

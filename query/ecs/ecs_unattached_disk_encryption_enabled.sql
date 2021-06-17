@@ -7,7 +7,7 @@ select
   end as status,
   case
     when  encrypted then  title || ' encryption enabled.'
-    else  title || ' encryption not enabled.'
+    else  title || ' encryption disabled.'
   end as reason,
   -- Additional Dimensions
   region,
