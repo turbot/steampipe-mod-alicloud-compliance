@@ -10,7 +10,7 @@ with network_policy_enabled as (
 )
 select
   -- Required Columns
-  'arn:acs:cs:' || a.region || ':' || a.account_id || ':cluster/' || a.cluster_id as resource,
+  arn as resource,
   case
     when a.meta_data -> 'Addons' @> '[{"name": "flannel"}]' then 'skip'
     when n.cluster_id is null then 'alarm'
