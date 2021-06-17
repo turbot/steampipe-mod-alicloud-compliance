@@ -12,10 +12,12 @@ select
   -- Required Columns
   'arn:acs:cs:' || region || ':' || account_id || ':cluster/' || a.cluster_id as resource,
   case
+   when a.meta_data -> 'Addons' @> '[{"name": "flannel"}]' then 'skip'
     when n.cluster_id is null then 'alarm'
     else 'ok'
   end as status,
   case
+    when a.meta_data -> 'Addons' @> '[{"name": "flannel"}]' then title || ' does not support network policy.'
     when n.cluster_id is null then title || ' network policy disabled.'
     else title || ' network policy enabled.'
   end as reason,
