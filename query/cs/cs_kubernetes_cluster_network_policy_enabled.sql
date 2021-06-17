@@ -3,7 +3,7 @@ with network_policy_enabled as (
     cluster_id
   from
     alicloud_cs_kubernetes_cluster,
-    jsonb_array_elements(meta_data -> 'Addons' ) as a
+    jsonb_array_elements(meta_data -> 'Addons') as a
   where
     a ->> 'name' = 'terway-eniip' and
     regexp_replace(a ->> 'config', '\\"', '"', 'g')::jsonb @> '{"NetworkPolicy":"true"}'

@@ -7,7 +7,7 @@ select
   end as status,
   case
     when tde_status = 'Enabled' then title || ' TDE enabled.'
-    else db_instance_id || ' TDE disabled.'
+    else title || ' TDE disabled.'
   end as reason,
   -- Additional Dimensions
   region,

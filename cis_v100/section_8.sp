@@ -8,6 +8,7 @@ benchmark "cis_v100_8" {
   title         = "8 Security Center"
   #documentation = file("./cis_v100/docs/cis_v100_8.md")
   children = [
+    control.cis_v100_8_1,
     control.cis_v100_8_3,
     control.cis_v100_8_4,
     control.cis_v100_8_5,
@@ -16,6 +17,19 @@ benchmark "cis_v100_8" {
     control.cis_v100_8_8,
     ]
   tags          = local.cis_v100_8_common_tags
+}
+
+control "cis_v100_8_1" {
+  title         = "8.1 Ensure that Security Center is Advanced or Enterprise Edition"
+  description   = "The Advanced or Enterprise Edition enables threat detection for network and endpoints, providing malware detection, webshell detection and anomaly detection in Security Center."
+  sql           = query.security_center_advanced_or_enterprise_edition.sql
+  #documentation = file("./cis_v100/docs/cis_v100_8_1.md")
+
+  tags = merge(local.cis_v100_8_common_tags, {
+    cis_item_id = "8.1"
+    cis_level   = "2"
+    cis_type    = "automated"
+  })
 }
 
 control "cis_v100_8_3" {
