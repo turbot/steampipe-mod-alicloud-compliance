@@ -31,7 +31,7 @@ control "cis_v100_4_1" {
 }
 
 control "cis_v100_4_2" {
-  title         = "4.2 Ensure that ‘Virtual Machine’s disk’ are encrypted"
+  title         = "4.2 Ensure that 'Virtual Machine’s disk' are encrypted"
   description   = "Ensure that disk are encrypted when it is created with the creation of VM instance."
   sql           = query.ecs_disk_encryption_enabled.sql
   #documentation = file("./cis_v100/docs/cis_v100_4_2.md")

@@ -99,7 +99,7 @@ control "cis_v100_5_6" {
 }
 
 control "cis_v100_5_8" {
-  title         = "5.8 Ensure server-side encryption is set to ‘Encrypt with Service Key’"
+  title         = "5.8 Ensure server-side encryption is set to 'Encrypt with Service Key'"
   description   = "Enable server-side encryption (Encrypt with Service Key) for objects."
   sql           = query.oss_bucket_encrypted_with_servcie_key.sql
   #documentation = file("./cis_v100/docs/cis_v100_5_8.md")
@@ -112,7 +112,7 @@ control "cis_v100_5_8" {
 }
 
 control "cis_v100_5_9" {
-  title         = "5.9 Ensure server-side encryption is set to ‘Encrypt with BYOK’"
+  title         = "5.9 Ensure server-side encryption is set to 'Encrypt with BYOK'"
   description   = "Enable server-side encryption (Encrypt with BYOK) for objects."
   sql           = query.oss_bucket_encrypted_with_byok.sql
   #documentation = file("./cis_v100/docs/cis_v100_5_8.md")
