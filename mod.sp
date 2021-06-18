@@ -8,8 +8,8 @@ mod "alicloud_compliance" {
   categories    = ["alicloud", "cis", "compliance", "public cloud", "security"]
 
   opengraph {
-    title        = "Steampipe Mod for Alibaba Cloud Compliance"
-    description   = "Run individual configuration, compliance and security controls or full compliance benchmarks for CIS across all of your Alibaba Cloud accounts using Steampipe."
-    image        = "/images/mods/turbot/alicloud-compliance-social-graphic.png"
+    title       = "Steampipe Mod for Alibaba Cloud Compliance"
+    description = "Run individual configuration, compliance and security controls or full compliance benchmarks for CIS across all of your Alibaba Cloud accounts using Steampipe."
+    image       = "/images/mods/turbot/alicloud-compliance-social-graphic.png"
   }
 }
