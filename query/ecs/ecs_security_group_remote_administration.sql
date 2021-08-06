@@ -28,7 +28,7 @@ select
     else a.security_group_id || ' allow ingress from 0.0.0.0/0 to port 22 or 3389.'
   end as reason,
   -- Additional Dimensions
-  a.region_id,
+  a.region,
   a.account_id
 from
   alicloud_ecs_security_group as a
