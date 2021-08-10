@@ -1,8 +1,10 @@
-## v0.1.1 [2021-08-06]
+## v0.2 [2021-08-10]
 
 _Bug fixes_
 
-- Fixed: Compliance queries to use correct region column ([#28](https://github.com/turbot/steampipe-mod-alicloud-compliance/pull/28)
+- Fixed: Update region column in `ecs_security_group_remote_administration`, `ecs_security_group_restrict_ingress_rdp_all` and  `ecs_security_group_restrict_ingress_ssh_all` queries ([#28](https://github.com/turbot/steampipe-mod-alicloud-compliance/pull/28)) ([#26](https://github.com/turbot/steampipe-mod-alicloud-compliance/pull/26))
+
+
 
 ## v0.1 [2021-06-17]
 
