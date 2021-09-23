@@ -30,7 +30,7 @@ steampipe plugin install alicloud
 
 Clone:
 ```sh
-git clone git@github.com:turbot/steampipe-mod-alicloud-compliance
+git clone https://github.com/turbot/steampipe-mod-alicloud-compliance.git
 cd steampipe-mod-alicloud-compliance
 ```
 
