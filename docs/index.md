@@ -6,6 +6,8 @@ repository: "https://github.com/turbot/steampipe-mod-alicloud-compliance"
 
 Run individual configuration, compliance and security controls or full compliance benchmarks for `CIS` and across all your Alibaba Cloud accounts.
 
+![image](https://github.com/turbot/steampipe-mod-alicloud-compliance/blob/main/docs/alicloud_cis_v100_console.png)
+
 ## References
 
 [Alibaba Cloud](https://alibabacloud.com) provides on-demand cloud computing platforms and APIs to authenticated customers on a metered pay-as-you-go basis.
