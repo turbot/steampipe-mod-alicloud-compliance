@@ -14,7 +14,10 @@ benchmark "cis_v100_4" {
     control.cis_v100_4_4,
     control.cis_v100_4_5,
     ]
-  tags          = local.cis_v100_4_common_tags
+
+  tags = merge(local.cis_v100_4_common_tags, {
+    type = "Benchmark"
+  })
 }
 
 control "cis_v100_4_1" {
@@ -27,6 +30,7 @@ control "cis_v100_4_1" {
     cis_item_id = "4.1"
     cis_level   = "1"
     cis_type    = "manual"
+    service     = "AliCloud/ECS"
   })
 }
 
@@ -40,6 +44,7 @@ control "cis_v100_4_2" {
     cis_item_id = "4.2"
     cis_level   = "1"
     cis_type    = "manual"
+    service     = "AliCloud/ECS"
   })
 }
 
@@ -53,6 +58,7 @@ control "cis_v100_4_3" {
     cis_item_id = "4.3"
     cis_level   = "1"
     cis_type    = "manual"
+    service     = "AliCloud/ECS"
   })
 }
 
@@ -66,6 +72,7 @@ control "cis_v100_4_4" {
     cis_item_id = "4.4"
     cis_level   = "1"
     cis_type    = "manual"
+    service     = "AliCloud/ECS"
   })
 }
 
@@ -79,5 +86,6 @@ control "cis_v100_4_5" {
     cis_item_id = "4.5"
     cis_level   = "1"
     cis_type    = "manual"
+    service     = "AliCloud/SecurityCenter"
   })
 }

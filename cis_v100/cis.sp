@@ -1,8 +1,7 @@
 locals {
-  cis_v100_common_tags = {
+  cis_v100_common_tags = merge(local.alicloud_compliance_common_tags, {
     cis         = "true"
     cis_version = "v1.0.0"
-    plugin      = "alicloud"
   }
 }
 
@@ -20,5 +19,8 @@ benchmark "cis_v100" {
     benchmark.cis_v100_7,
     benchmark.cis_v100_8,
   ]
-  tags = local.cis_v100_common_tags
+
+  tags = merge(local.cis_v100_common_tags, {
+    type = "Benchmark"
+  })
 }

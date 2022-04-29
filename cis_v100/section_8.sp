@@ -16,7 +16,11 @@ benchmark "cis_v100_8" {
     control.cis_v100_8_7,
     control.cis_v100_8_8,
     ]
-  tags          = local.cis_v100_8_common_tags
+
+  tags = merge(local.cis_v100_8_common_tags, {
+    type    = "Benchmark"
+    service = "AliCloud/SecurityCenter"
+  })
 }
 
 control "cis_v100_8_1" {
@@ -29,6 +33,7 @@ control "cis_v100_8_1" {
     cis_item_id = "8.1"
     cis_level   = "2"
     cis_type    = "automated"
+    service     = "AliCloud/SecurityCenter"
   })
 }
 
@@ -42,6 +47,7 @@ control "cis_v100_8_3" {
     cis_item_id = "8.3"
     cis_level   = "2"
     cis_type    = "manual"
+    service     = "AliCloud/SecurityCenter"
   })
 }
 
@@ -55,6 +61,7 @@ control "cis_v100_8_4" {
     cis_item_id = "8.4"
     cis_level   = "2"
     cis_type    = "manual"
+    service     = "AliCloud/SecurityCenter"
   })
 }
 
@@ -68,6 +75,7 @@ control "cis_v100_8_5" {
     cis_item_id = "8.5"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "AliCloud/SecurityCenter"
   })
 }
 
@@ -81,6 +89,7 @@ control "cis_v100_8_6" {
     cis_item_id = "8.6"
     cis_level   = "2"
     cis_type    = "manual"
+    service     = "AliCloud/SecurityCenter"
   })
 }
 
@@ -94,6 +103,7 @@ control "cis_v100_8_7" {
     cis_item_id = "8.7"
     cis_level   = "2"
     cis_type    = "automated"
+    service     = "AliCloud/SecurityCenter"
   })
 }
 
@@ -107,5 +117,6 @@ control "cis_v100_8_8" {
     cis_item_id = "8.8"
     cis_level   = "2"
     cis_type    = "manual"
+    service     = "AliCloud/SecurityCenter"
   })
 }

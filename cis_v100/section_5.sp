@@ -17,7 +17,11 @@ benchmark "cis_v100_5" {
     control.cis_v100_5_8,
     control.cis_v100_5_9,
     ]
-  tags          = local.cis_v100_5_common_tags
+
+  tags = merge(local.cis_v100_5_common_tags, {
+    type = "Benchmark"
+    service     = "AliCloud/OSS"
+  })
 }
 
 control "cis_v100_5_1" {
@@ -30,6 +34,7 @@ control "cis_v100_5_1" {
     cis_item_id = "5.1"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "AliCloud/OSS"
   })
 }
 
@@ -43,6 +48,7 @@ control "cis_v100_5_2" {
     cis_item_id = "5.2"
     cis_level   = "1"
     cis_type    = "manual"
+    service     = "AliCloud/OSS"
   })
 }
 
@@ -56,6 +62,7 @@ control "cis_v100_5_3" {
     cis_item_id = "5.3"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "AliCloud/OSS"
   })
 }
 
@@ -69,6 +76,7 @@ control "cis_v100_5_4" {
     cis_item_id = "5.4"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "AliCloud/OSS"
   })
 }
 
@@ -82,6 +90,7 @@ control "cis_v100_5_5" {
     cis_item_id = "5.5"
     cis_level   = "1"
     cis_type    = "manual"
+    service     = "AliCloud/OSS"
   })
 }
 
@@ -95,6 +104,7 @@ control "cis_v100_5_6" {
     cis_item_id = "5.6"
     cis_level   = "1"
     cis_type    = "manual"
+    service     = "AliCloud/OSS"
   })
 }
 
@@ -108,6 +118,7 @@ control "cis_v100_5_8" {
     cis_item_id = "5.8"
     cis_level   = "2"
     cis_type    = "manual"
+    service     = "AliCloud/OSS"
   })
 }
 
@@ -121,5 +132,6 @@ control "cis_v100_5_9" {
     cis_item_id = "5.9"
     cis_level   = "2"
     cis_type    = "manual"
+    service     = "AliCloud/OSS"
   })
 }
