@@ -76,6 +76,7 @@ control "cis_v100_2_3" {
     cis_item_id = "2.3"
     cis_level   = "1"
     cis_type    = "manual"
+    service     = "AliCloud/SLS"
   })
 }
 
@@ -89,7 +90,7 @@ control "cis_v100_2_4" {
     cis_item_id = "2.4"
     cis_level   = "1"
     cis_type    = "manual"
-    service     = "AliCloud/ACK"
+    service     = "AliCloud/SLS"
   })
 }
 
@@ -117,6 +118,7 @@ control "cis_v100_2_6" {
     cis_item_id = "2.6"
     cis_level   = "2"
     cis_type    = "manual"
+    service     = "AliCloud/AntiDDoS"
   })
 }
 
@@ -130,6 +132,7 @@ control "cis_v100_2_7" {
     cis_item_id = "2.7"
     cis_level   = "2"
     cis_type    = "manual"
+    service     = "AliCloud/WAF"
   })
 }
 
@@ -143,6 +146,7 @@ control "cis_v100_2_8" {
     cis_item_id = "2.8"
     cis_level   = "2"
     cis_type    = "manual"
+    service     = "AliCloud/CloudFirewall"
   })
 }
 
@@ -170,7 +174,7 @@ control "cis_v100_2_10" {
     cis_item_id = "2.10"
     cis_level   = "1"
     cis_type    = "manual"
-    service     = "AliCloud/LogService"
+    service     = "AliCloud/SLS"
   })
 }
 
@@ -184,7 +188,7 @@ control "cis_v100_2_11" {
     cis_item_id = "2.11"
     cis_level   = "2"
     cis_type    = "manual"
-    service     = "AliCloud/LogService"
+    service     = "AliCloud/SLS"
   })
 }
 
@@ -198,7 +202,7 @@ control "cis_v100_2_12" {
     cis_item_id = "2.12"
     cis_level   = "1"
     cis_type    = "manual"
-    service     = "AliCloud/LogService"
+    service     = "AliCloud/SLS"
   })
 }
 
@@ -212,7 +216,7 @@ control "cis_v100_2_13" {
     cis_item_id = "2.13"
     cis_level   = "1"
     cis_type    = "manual"
-    service     = "AliCloud/LogService"
+    service     = "AliCloud/SLS"
   })
 }
 
@@ -226,7 +230,7 @@ control "cis_v100_2_14" {
     cis_item_id = "2.14"
     cis_level   = "1"
     cis_type    = "manual"
-    service     = "AliCloud/LogService"
+    service     = "AliCloud/SLS"
   })
 }
 
@@ -240,7 +244,7 @@ control "cis_v100_2_15" {
     cis_item_id = "2.15"
     cis_level   = "1"
     cis_type    = "manual"
-    service     = "AliCloud/LogService"
+    service     = "AliCloud/SLS"
   })
 }
 
@@ -254,7 +258,7 @@ control "cis_v100_2_16" {
     cis_item_id = "2.16"
     cis_level   = "1"
     cis_type    = "manual"
-    service     = "AliCloud/LogService"
+    service     = "AliCloud/SLS"
   })
 }
 
@@ -268,7 +272,7 @@ control "cis_v100_2_17" {
     cis_item_id = "2.17"
     cis_level   = "1"
     cis_type    = "manual"
-    service     = "AliCloud/LogService"
+    service     = "AliCloud/SLS"
   })
 }
 
@@ -282,7 +286,7 @@ control "cis_v100_2_18" {
     cis_item_id = "2.18"
     cis_level   = "1"
     cis_type    = "manual"
-    service     = "AliCloud/LogService"
+    service     = "AliCloud/SLS"
   })
 }
 
@@ -296,7 +300,7 @@ control "cis_v100_2_19" {
     cis_item_id = "2.19"
     cis_level   = "2"
     cis_type    = "manual"
-    service     = "AliCloud/LogService"
+    service     = "AliCloud/SLS"
   })
 }
 
@@ -310,7 +314,7 @@ control "cis_v100_2_20" {
     cis_item_id = "2.20"
     cis_level   = "2"
     cis_type    = "manual"
-    service     = "AliCloud/LogService"
+    service     = "AliCloud/SLS"
   })
 }
 
@@ -324,7 +328,7 @@ control "cis_v100_2_21" {
     cis_item_id = "2.21"
     cis_level   = "1"
     cis_type    = "manual"
-    service     = "AliCloud/LogService"
+    service     = "AliCloud/SLS"
   })
 }
 
@@ -338,7 +342,7 @@ control "cis_v100_2_22" {
     cis_item_id = "2.22"
     cis_level   = "2"
     cis_type    = "manual"
-    service     = "AliCloud/LogService"
+    service     = "AliCloud/SLS"
   })
 }
 
@@ -352,6 +356,6 @@ control "cis_v100_2_23" {
     cis_item_id = "2.23"
     cis_level   = "2"
     cis_type    = "manual"
-    service     = "AliCloud/LogService"
+    service     = "AliCloud/SLS"
   })
 }

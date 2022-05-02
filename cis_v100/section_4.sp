@@ -16,7 +16,8 @@ benchmark "cis_v100_4" {
     ]
 
   tags = merge(local.cis_v100_4_common_tags, {
-    type = "Benchmark"
+    type    = "Benchmark"
+    servcie = "AliCloud/ECS"
   })
 }
 
@@ -86,6 +87,6 @@ control "cis_v100_4_5" {
     cis_item_id = "4.5"
     cis_level   = "1"
     cis_type    = "manual"
-    service     = "AliCloud/SecurityCenter"
+    service     = "AliCloud/ECS"
   })
 }
