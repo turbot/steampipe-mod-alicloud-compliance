@@ -1,3 +1,9 @@
+## v0.4 [2022-05-05]
+
+_Enhancements_
+
+- Added `category`, `service`, and `type` tags to benchmarks and controls. ([#38](https://github.com/turbot/steampipe-mod-alicloud-compliance/pull/38))
+
 ## v0.3 [2021-09-23]
 
 _Enhancements_
