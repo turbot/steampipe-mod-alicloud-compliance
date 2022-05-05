@@ -17,7 +17,11 @@ benchmark "cis_v100_6" {
     control.cis_v100_6_8,
     control.cis_v100_6_9,
     ]
-  tags          = local.cis_v100_6_common_tags
+
+  tags = merge(local.cis_v100_6_common_tags, {
+    service = "AliCloud/RDS"
+    type    = "Benchmark"
+  })
 }
 
 control "cis_v100_6_1" {
@@ -30,6 +34,7 @@ control "cis_v100_6_1" {
     cis_item_id = "6.1"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "AliCloud/RDS"
   })
 }
 
@@ -43,6 +48,7 @@ control "cis_v100_6_2" {
     cis_item_id = "6.2"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "AliCloud/RDS"
   })
 }
 
@@ -56,6 +62,7 @@ control "cis_v100_6_3" {
     cis_item_id = "6.3"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "AliCloud/RDS"
   })
 }
 
@@ -69,6 +76,7 @@ control "cis_v100_6_4" {
     cis_item_id = "6.4"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "AliCloud/RDS"
   })
 }
 
@@ -82,6 +90,7 @@ control "cis_v100_6_5" {
     cis_item_id = "6.5"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "AliCloud/RDS"
   })
 }
 
@@ -95,6 +104,7 @@ control "cis_v100_6_7" {
     cis_item_id = "6.7"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "AliCloud/RDS"
   })
 }
 
@@ -108,6 +118,7 @@ control "cis_v100_6_8" {
     cis_item_id = "6.8"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "AliCloud/RDS"
   })
 }
 
@@ -121,5 +132,6 @@ control "cis_v100_6_9" {
     cis_item_id = "6.9"
     cis_level   = "1"
     cis_type    = "automated"
+    service     = "AliCloud/RDS"
   })
 }
