@@ -16,8 +16,8 @@ benchmark "cis_v100_4" {
     ]
 
   tags = merge(local.cis_v100_4_common_tags, {
-    type    = "Benchmark"
     servcie = "AliCloud/ECS"
+    type    = "Benchmark"
   })
 }
 
