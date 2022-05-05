@@ -3,7 +3,7 @@ locals {
   alicloud_compliance_common_tags = {
     category = "Compliance"
     plugin   = "alicloud"
-    service  = "Alibaba Cloud"
+    service  = "Alicloud"
   }
 }
 
