@@ -13,7 +13,7 @@ benchmark "cis_v100_4" {
     control.cis_v100_4_3,
     control.cis_v100_4_4,
     control.cis_v100_4_5,
-    ]
+  ]
 
   tags = merge(local.cis_v100_4_common_tags, {
     servcie = "AliCloud/ECS"
