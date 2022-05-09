@@ -11,7 +11,6 @@ Or in a terminal:
 Includes support for:
 * [Alibaba Cloud CIS v1.0.0](https://hub.steampipe.io/mods/turbot/alicloud_compliance/controls/benchmark.cis_v100)
 
-
 ## Getting started
 
 ### Installation
