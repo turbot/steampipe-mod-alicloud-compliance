@@ -15,7 +15,7 @@ benchmark "cis_v100_8" {
     control.cis_v100_8_6,
     control.cis_v100_8_7,
     control.cis_v100_8_8,
-    ]
+  ]
 
   tags = merge(local.cis_v100_8_common_tags, {
     service = "AliCloud/SecurityCenter"

@@ -16,7 +16,7 @@ benchmark "cis_v100_6" {
     control.cis_v100_6_7,
     control.cis_v100_6_8,
     control.cis_v100_6_9,
-    ]
+  ]
 
   tags = merge(local.cis_v100_6_common_tags, {
     service = "AliCloud/RDS"
