@@ -1,4 +1,4 @@
-# Alibaba Cloud Compliance Scanning Tool
+# Alibaba Cloud Compliance Mod for Steampipe
 
 50+ checks covering industry defined security best practices across all Alibaba Cloud regions.
 
