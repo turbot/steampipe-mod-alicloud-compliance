@@ -2,7 +2,7 @@ select
   -- Required Columns
   'acs:ram::' || a.account_id as resource,
   case
-    when max_login_attempts = 5 then 'ok'
+    when max_login_attempts <= 5 then 'ok'
     else 'alarm'
   end as status,
   case
