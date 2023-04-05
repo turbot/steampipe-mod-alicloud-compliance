@@ -167,7 +167,7 @@ query "ram_root_account_mfa_enabled" {
         when mfa_active then user_name || ' MFA enabled.'
         else user_name || ' MFA not enabled.'
       end as reason
-      ${local.common_dimensions_global_sql}      
+      ${local.common_dimensions_global_sql}
     from
       alicloud_ram_credential_report
     where
@@ -187,7 +187,7 @@ query "ram_root_account_no_access_keys" {
         when access_key_1_active or access_key_2_active then 'Root account access key exists.'
         else 'No root account access keys exist.'
       end as reason
-      ${local.common_dimensions_global_sql} 
+      ${local.common_dimensions_global_sql}
     from
       alicloud_ram_credential_report
     where
@@ -207,7 +207,7 @@ query "ram_root_account_unused" {
         when user_last_logon is null then 'Root account not used.'
         else 'Root account last used ' || extract(day from current_date - user_last_logon) || ' days ago.'
       end as reason
-      ${local.common_dimensions_global_sql} 
+      ${local.common_dimensions_global_sql}
     from
       alicloud_ram_credential_report
     where
@@ -226,7 +226,7 @@ query "ram_user_access_key_rotated_90" {
       user_name || ' ' || access_key_id || ' created ' || to_char(create_date , 'DD-Mon-YYYY') ||
         ' (' || extract(day from current_timestamp - create_date) || ' days).'
       as reason
-      ${local.common_dimensions_global_sql} 
+      ${local.common_dimensions_global_sql}
     from
       alicloud_ram_access_key;
   EOQ
@@ -245,7 +245,7 @@ query "ram_user_console_access_mfa_enabled" {
         when password_exist and not mfa_active then user_name || ' password login enabled but no MFA device configured.'
         else user_name || ' password login enabled and MFA device configured.'
       end as reason
-      ${local.common_dimensions_global_sql} 
+      ${local.common_dimensions_global_sql}
     from
       alicloud_ram_credential_report;
   EOQ

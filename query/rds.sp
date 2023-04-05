@@ -12,7 +12,7 @@ query "rds_instance_postgresql_log_connections_parameter_on" {
         when parameters -> 'RunningParameters' -> 'DBInstanceParameter' @> '[{"ParameterName": "log_connections", "ParameterValue": "on"}]' then title || ' ''log_connections'' parameter set to ''on''.'
         else title || ' ''log_connections'' parameter set to ''off''.'
       end as reason
-      ${local.tag_dimensions_sql}      
+      ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
     from
       alicloud_rds_instance;
@@ -33,7 +33,7 @@ query "rds_instance_postgresql_log_disconnections_parameter_on" {
         when parameters -> 'RunningParameters' -> 'DBInstanceParameter' @> '[{"ParameterName": "log_disconnections", "ParameterValue": "on"}]' then title || ' ''log_disconnections'' parameter set to ''on''.'
         else title || ' ''log_disconnections'' parameter set to ''off''.'
       end as reason
-      ${local.tag_dimensions_sql}      
+      ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
     from
       alicloud_rds_instance;
@@ -54,7 +54,7 @@ query "rds_instance_postgresql_log_duration_parameter_on" {
         when parameters -> 'RunningParameters' -> 'DBInstanceParameter' @> '[{"ParameterName": "log_duration", "ParameterValue": "on"}]' then title || ' ''log_duration'' parameter set to ''on''.'
         else title || ' ''log_duration'' parameter set to ''off''.'
       end as reason
-      ${local.tag_dimensions_sql}      
+      ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
     from
       alicloud_rds_instance;
@@ -73,7 +73,7 @@ query "rds_instance_restrict_access_to_internet" {
         when security_ips :: jsonb ? '0.0.0.0/0' then title || ' publicly accessible.'
         else title || ' not publicly accessible.'
       end as reason
-      ${local.tag_dimensions_sql}      
+      ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
     from
       alicloud_rds_instance;
@@ -92,7 +92,7 @@ query "rds_instance_sql_audit_enabled" {
         when sql_collector_policy ->> 'SQLCollectorStatus' = 'Enable' then title || ' SQL audit enabled.'
         else title || ' SQL audit disabled.'
       end as reason
-      ${local.tag_dimensions_sql}      
+      ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
     from
       alicloud_rds_instance;
@@ -109,7 +109,7 @@ query "rds_instance_sql_audit_retention_period_180_days" {
       end as status,
       title || ' SQL audit enabled with retention period ' || sql_collector_retention || ' days.'
       as reason
-      ${local.tag_dimensions_sql}      
+      ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
     from
       alicloud_rds_instance;
@@ -128,7 +128,7 @@ query "rds_instance_ssl_enabled" {
         when ssl_status = 'Enabled' then title || ' SSL enabled.'
         else title || ' SSL disabled.'
       end as reason
-      ${local.tag_dimensions_sql}      
+      ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
     from
       alicloud_rds_instance;
@@ -147,7 +147,7 @@ query "rds_instance_tde_enabled" {
         when tde_status = 'Enabled' then title || ' TDE enabled.'
         else title || ' TDE disabled.'
       end as reason
-      ${local.tag_dimensions_sql}      
+      ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
     from
       alicloud_rds_instance;
