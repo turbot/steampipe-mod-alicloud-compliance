@@ -34,7 +34,6 @@ query "action_trail_oss_bucket_not_public" {
         when bucket.acl <> 'private' then 'oss bucket ' || bucket.name || ' used to store ActionTrail logs is publicly accessible.'
         else 'oss bucket ' || bucket.name || ' used to store ActionTrail logs is not publicly accessible.'
       end as reason
-      ${local.tag_dimensions_sql}
       ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "trail.")}
     from
       alicloud_action_trail as trail

@@ -10,6 +10,7 @@ query "oss_bucket_encrypted_with_byok" {
         when server_side_encryption ->> 'SSEAlgorithm' = 'KMS' and k.creator = k.account_id then b.title || ' encrypted with BYOK.'
         else b.title || ' not encrypted with BYOK.'
       end as reason
+      ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
       ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
     from
       alicloud_oss_bucket b
@@ -29,6 +30,7 @@ query "oss_bucket_encrypted_with_servcie_key" {
         when server_side_encryption ->> 'SSEAlgorithm' = 'KMS' and k.creator = 'Oss' then b.title || ' encrypted with Service Key.'
         else b.title || ' not encrypted with Service Key.'
       end as reason
+      ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
       ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "b.")}
     from
       alicloud_oss_bucket b
