@@ -5,6 +5,10 @@ _What's new?_
 - Added `tags` as dimensions to group and filter findings. (see [var.tag_dimensions](https://hub.steampipe.io/mods/turbot/alicloud_compliance/variables)) ([#54](https://github.com/turbot/steampipe-mod-alicloud-compliance/pull/54))
 - Added `connection_name` in the common dimensions to group and filter findings. (see [var.common_dimensions](https://hub.steampipe.io/mods/turbot/alicloud_compliance/variables)) ([#54](https://github.com/turbot/steampipe-mod-alicloud-compliance/pull/54))
 
+_Bug fixes_
+
+- Fixed the `cis_v100_1_14` control to be in `ok` state instead of `alarm` if maximum login attempts is less than 5. ([#48](https://github.com/turbot/steampipe-mod-alicloud-compliance/pull/48)) (Thanks [@jurajsucik](https://github.com/jurajsucik) for the contribution!)
+
 ## v0.5 [2022-05-09]
 
 _Enhancements_
