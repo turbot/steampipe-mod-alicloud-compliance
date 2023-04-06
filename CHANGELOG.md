@@ -1,3 +1,10 @@
+## v0.6 [2023-04-06]
+
+_What's new?_
+
+- Added `tags` as dimensions to group and filter findings. (see [var.tag_dimensions](https://hub.steampipe.io/mods/turbot/alicloud_compliance/variables)) ([#54](https://github.com/turbot/steampipe-mod-alicloud-compliance/pull/54))
+- Added `connection_name` in the common dimensions to group and filter findings. (see [var.common_dimensions](https://hub.steampipe.io/mods/turbot/alicloud_compliance/variables)) ([#54](https://github.com/turbot/steampipe-mod-alicloud-compliance/pull/54))
+
 ## v0.5 [2022-05-09]
 
 _Enhancements_
