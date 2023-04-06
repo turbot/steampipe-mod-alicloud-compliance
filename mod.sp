@@ -14,13 +14,16 @@ variable "common_dimensions" {
   # - account_id
   # - connection_name (_ctx ->> 'connection_name')
   # - region
-  default = ["account_id", "connection_name", "region"]
+  default = ["account_id", "region"]
 }
 
 variable "tag_dimensions" {
   type        = list(string)
   description = "A list of tags to add as dimensions to each control."
-  default     = ["Environment", "Owner"]
+  # A list of tag names to include as dimensions for resources that support
+  # tags (e.g. "Owner", "Environment"). Default to empty since tag names are
+  # a personal choice.
+  default     = []
 }
 
 locals {
