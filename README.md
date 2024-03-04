@@ -103,8 +103,8 @@ powerpipe benchmark run alicloud_compliance.benchmark.cis_v100 --var 'tag_dimens
 Or through environment variables:
 
 ```sh
-export SP_VAR_common_dimensions='["account_id", "connection_name", "region"]'
-export SP_VAR_tag_dimensions='["Environment", "Owner"]'
+export PP_VAR_common_dimensions='["account_id", "connection_name", "region"]'
+export PP_VAR_tag_dimensions='["Environment", "Owner"]'
 powerpipe benchmark run alicloud_compliance.benchmark.cis_v100
 ```
 
