@@ -4,9 +4,9 @@
 
 Run individual configuration, compliance and security controls or full compliance benchmarks for `CIS` and across all your Alibaba Cloud accounts.
 
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-alicloud-compliance/main/docs/alicloud_compliance_dashboard.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-alicloud-compliance/main/docs/alicloud_cis_v100_dashboard.png" width="50%" type="thumbnail"/>
-<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-alicloud-compliance/main/docs/alicloud_cis_v100_console.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-alicloud-compliance/add-new-checks/docs/alicloud_compliance_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-alicloud-compliance/add-new-checks/docs/alicloud_cis_v100_dashboard.png" width="50%" type="thumbnail"/>
+<img src="https://raw.githubusercontent.com/turbot/steampipe-mod-alicloud-compliance/add-new-checks/docs/alicloud_cis_v100_console.png" width="50%" type="thumbnail"/>
 
 ## Documentation
 
