@@ -60,7 +60,7 @@ locals {
 mod "alicloud_compliance" {
   # hub metadata
   title         = "Alibaba Cloud Compliance"
-  description   = "Run individual configuration, compliance and security controls or full compliance benchmarks for CIS across all of your Alibaba Cloud accounts using Steampipe."
+  description   = "Run individual configuration, compliance and security controls or full compliance benchmarks for CIS across all of your Alibaba Cloud accounts using Powerpipe and Steampipe.."
   color         = "#FF6600"
   documentation = file("./docs/index.md")
   icon          = "/images/mods/turbot/alicloud-compliance.svg"
