@@ -19,7 +19,7 @@ Includes support for:
 - **[Benchmarks and controls →](https://hub.powerpipe.io/mods/turbot/alicloud_compliance/controls)**
 - **[Named queries →](https://hub.powerpipe.io/mods/turbot/alicloud_compliance/queries)**
 
-## Getting started
+## Getting Started
 
 ### Installation
 
