@@ -1,5 +1,3 @@
-# AWS Compliance Mod
-
 # Alibaba Cloud Compliance Mod
 
 Run individual configuration, compliance and security controls or full compliance benchmarks for `CIS` and across all your Alibaba Cloud accounts.
@@ -10,8 +8,8 @@ Run individual configuration, compliance and security controls or full complianc
 
 ## Documentation
 
-- **[Benchmarks and controls →](https://hub.powerpipe.io/mods/turbot/aws_compliance/controls)**
-- **[Named queries →](https://hub.powerpipe.io/mods/turbot/aws_compliance/queries)**
+- **[Benchmarks and controls →](https://hub.powerpipe.io/mods/turbot/alicloud_compliance/controls)**
+- **[Named queries →](https://hub.powerpipe.io/mods/turbot/alicloud_compliance/queries)**
 
 ## Getting Started
 
@@ -38,7 +36,7 @@ Finally, install the mod:
 mkdir dashboards
 cd dashboards
 powerpipe mod init
-powerpipe mod install github.com/turbot/powerpipe-mod-aws-compliance
+powerpipe mod install github.com/turbot/powerpipe-mod-alicloud-compliance
 ```
 
 ### Browsing Dashboards
