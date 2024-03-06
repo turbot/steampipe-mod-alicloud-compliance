@@ -1,5 +1,5 @@
 mod "alicloud_compliance" {
-  # hub metadata
+  # Hub metadata
   title         = "Alibaba Cloud Compliance"
   description   = "Run individual configuration, compliance and security controls or full compliance benchmarks for CIS across all of your Alibaba Cloud accounts using Powerpipe and Steampipe."
   color         = "#FF6600"
