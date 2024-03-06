@@ -8,10 +8,10 @@
 50+ checks covering industry defined security best practices across all Alibaba Cloud regions.
 
 Run checks in a dashboard:
-![image](https://raw.githubusercontent.com/turbot/steampipe-mod-alicloud-compliance/add-new-checks/docs/alicloud_cis_v100_dashboard.png)
+![image](https://raw.githubusercontent.com/turbot/steampipe-mod-alicloud-compliance/main/docs/alicloud_cis_v100_dashboard.png)
 
 Or in a terminal:
-![image](https://raw.githubusercontent.com/turbot/steampipe-mod-alicloud-compliance/add-new-checks/docs/alicloud_cis_v100_console.png)
+![image](https://raw.githubusercontent.com/turbot/steampipe-mod-alicloud-compliance/main/docs/alicloud_cis_v100_console.png)
 
 Includes support for:
 * [Alibaba Cloud CIS v1.0.0](https://hub.steampipe.io/mods/turbot/alicloud_compliance/controls/benchmark.cis_v100)
