@@ -1,6 +1,8 @@
 ## v1.0.1 [2024-10-24]
 
-- Renamed `steampipe.spvars.example` files to `powerpipe.ppvars.example` and updated documentation. 
+_Bug fixes_
+
+- Renamed `steampipe.spvars.example` files to `powerpipe.ppvars.example` and updated documentation. ([#65](https://github.com/turbot/steampipe-mod-alicloud-compliance/pull/65))
 
 ## v1.0.0 [2024-10-22]
 
