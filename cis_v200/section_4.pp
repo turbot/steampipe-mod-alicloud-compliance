@@ -81,7 +81,7 @@ control "cis_v200_4_4" {
 control "cis_v200_4_5" {
   title         = "4.5 Ensure that the latest OS Patches for all Virtual Machines are applied"
   description   = "Ensure that the latest OS patches for all virtual machines are applied."
-  query         = query.manual_control
+  query         = query.ecs_instance_latest_os_patches_applied
   documentation = file("./cis_v200/docs/cis_v200_4_5.md")
 
   tags = merge(local.cis_v200_4_common_tags, {
@@ -95,7 +95,7 @@ control "cis_v200_4_5" {
 control "cis_v200_4_6" {
   title         = "4.6 Ensure that the endpoint protection for all Virtual Machines is installed"
   description   = "Ensure that endpoint protection (Security Center agent) is installed on all virtual machines."
-  query         = query.manual_control
+  query         = query.ecs_security_center_agent_installed
   documentation = file("./cis_v200/docs/cis_v200_4_6.md")
 
   tags = merge(local.cis_v200_4_common_tags, {

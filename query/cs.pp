@@ -61,3 +61,86 @@ query "cs_kubernetes_cluster_network_policy_enabled" {
       left join network_policy_enabled n on a.cluster_id = n.cluster_id;
   EOQ
 }
+
+query "cs_kubernetes_cluster_private_cluster_enabled" {
+  sql = <<-EOQ
+    select
+      arn as resource,
+      case
+        when state != 'running' then 'skip'
+        when master_url is not null
+          and (master_url::jsonb->>'api_server_endpoint') is not null
+          and (master_url::jsonb->>'api_server_endpoint') != ''
+        then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when state != 'running' then title || ' is in ' || state || ' state.'
+        when master_url is not null and (master_url::jsonb->>'api_server_endpoint') is not null
+          and (master_url::jsonb->>'api_server_endpoint') != '' then name || ' has a public API server endpoint configured.'
+        else name || ' is configured as a private cluster with no public API server endpoint.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      alicloud_cs_kubernetes_cluster;
+  EOQ
+}
+
+query "cs_kubernetes_cluster_cloud_monitor_enabled" {
+  sql = <<-EOQ
+    with cluster_nodes as (
+      select
+        c.arn,
+        c.cluster_id,
+        c.title as cluster_name,
+        n.instance_id,
+        c.tags,
+        c.region,
+        c.account_id,
+        c._ctx
+      from
+        alicloud_cs_kubernetes_cluster as c
+        join alicloud_cs_kubernetes_cluster_node as n on c.cluster_id = n.cluster_id
+    ),nodes_with_monitor as (
+      select
+        cn.arn,
+        cn.cluster_id,
+        cn.cluster_name,
+        cn.account_id,
+        cn._ctx,
+        cn.tags,
+        cn.region,
+        count(*) as total_nodes,
+        count(m.instance_id) as monitored_nodes
+      from
+        cluster_nodes cn
+        left join alicloud_cms_monitor_host m on cn.instance_id = m.instance_id
+      group by
+        cn.cluster_id,
+        cn.cluster_name,
+        cn.arn,
+        cn.tags,
+        cn._ctx,
+        cn.account_id,
+        cn.region
+    )select
+      arn as resource,
+      case
+        when total_nodes = 0 then 'skip'
+        when monitored_nodes = 0 then 'alarm'
+        when monitored_nodes < total_nodes then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when total_nodes = 0 then cluster_name || ' has no nodes.'
+        when monitored_nodes = 0 then cluster_name || ' cloud monitor not enabled on any node.'
+        when monitored_nodes < total_nodes then cluster_name || ' cloud monitor enabled on ' || monitored_nodes || ' out of ' ||  total_nodes || '.'
+        else cluster_name || ' cloud monitor enabled on all nodes.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${local.common_dimensions_sql}
+    from
+      nodes_with_monitor cn;
+  EOQ
+}
