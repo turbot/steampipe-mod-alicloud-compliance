@@ -51,7 +51,7 @@ control "cis_v200_3_2" {
 control "cis_v200_3_3" {
   title         = "3.3 Ensure VPC flow logging is enabled in all VPCs"
   description   = "You can use the flow log function to monitor the IP traffic information for an ENI, a VSwitch or a VPC. If you create a flow log for a VSwitch or a VPC, all the Elastic Network Interfaces, including the newly created Elastic Network Interfaces, are monitored. Such flow log data is stored in Log Service, where you can view and analyze IP traffic information. It is recommended that VPC Flow Logs be enabled for packet 'Rejects' for VPCs."
-  query         = query.manual_control
+  query         = query.vpc_flow_logs_enabled
   documentation = file("./cis_v200/docs/cis_v200_3_3.md")
 
   tags = merge(local.cis_v200_3_common_tags, {

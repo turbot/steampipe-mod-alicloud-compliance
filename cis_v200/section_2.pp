@@ -181,7 +181,7 @@ control "cis_v200_2_10" {
 control "cis_v200_2_11" {
   title         = "2.11 Ensure log monitoring and alerts are set up for Cloud Firewall changes"
   description   = "It is recommended that a metric filter and alarm be established for Cloud Firewall rule changes."
-  query         = query.manual_control
+  query         = query.sls_alert_cloud_firewall_changes
   documentation = file("./cis_v200/docs/cis_v200_2_11.md")
 
   tags = merge(local.cis_v200_2_common_tags, {
@@ -195,7 +195,7 @@ control "cis_v200_2_11" {
 control "cis_v200_2_12" {
   title         = "2.12 Ensure log monitoring and alerts are set up for VPC network route changes"
   description   = "It is recommended that a metric filter and alarm be established for VPC network route changes."
-  query         = query.manual_control
+  query         = query.sls_alert_vpc_route_changes
   documentation = file("./cis_v200/docs/cis_v200_2_12.md")
 
   tags = merge(local.cis_v200_2_common_tags, {
@@ -209,7 +209,7 @@ control "cis_v200_2_12" {
 control "cis_v200_2_13" {
   title         = "2.13 Ensure log monitoring and alerts are set up for VPC changes"
   description   = "It is recommended that a log search/analysis query and alarm be established for VPC changes."
-  query         = query.manual_control
+  query         = query.sls_alert_vpc_changes
   documentation = file("./cis_v200/docs/cis_v200_2_13.md")
 
   tags = merge(local.cis_v200_2_common_tags, {
@@ -223,7 +223,7 @@ control "cis_v200_2_13" {
 control "cis_v200_2_14" {
   title         = "2.14 Ensure log monitoring and alerts are set up for OSS permission changes"
   description   = "It is recommended that a metric filter and alarm be established for OSS Bucket RAM changes."
-  query         = query.manual_control
+  query         = query.sls_alert_oss_permission_changes
   documentation = file("./cis_v200/docs/cis_v200_2_14.md")
 
   tags = merge(local.cis_v200_2_common_tags, {
@@ -237,7 +237,7 @@ control "cis_v200_2_14" {
 control "cis_v200_2_15" {
   title         = "2.15 Ensure log monitoring and alerts are set up for RDS instance configuration changes"
   description   = "It is recommended that a metric filter and alarm be established for RDS Instance configuration changes."
-  query         = query.manual_control
+  query         = query.sls_alert_rds_configuration_changes
   documentation = file("./cis_v200/docs/cis_v200_2_15.md")
 
   tags = merge(local.cis_v200_2_common_tags, {
@@ -251,7 +251,7 @@ control "cis_v200_2_15" {
 control "cis_v200_2_16" {
   title         = "2.16 Ensure a log monitoring and alerts are set up for unauthorized API calls"
   description   = "Real-time monitoring of API calls can be achieved by directing ActionTrail Logs to LogService and establishing corresponding query and alarms. It is recommended that a query and alarm be established for unauthorized API calls."
-  query         = query.manual_control
+  query         = query.sls_alert_unauthorized_api_calls
   documentation = file("./cis_v200/docs/cis_v200_2_16.md")
 
   tags = merge(local.cis_v200_2_common_tags, {
@@ -265,7 +265,7 @@ control "cis_v200_2_16" {
 control "cis_v200_2_17" {
   title         = "2.17 Ensure a log monitoring and alerts are set up for Management Console sign-in without MFA"
   description   = "Real-time monitoring of API calls can be achieved by directing ActionTrail Logs to Log Service and establishing corresponding query and alarms. It is recommended that a query and alarm be established for console logins that are not protected by multi-factor authentication (MFA)."
-  query         = query.manual_control
+  query         = query.sls_alert_console_signin_without_mfa
   documentation = file("./cis_v200/docs/cis_v200_2_17.md")
 
   tags = merge(local.cis_v200_2_common_tags, {
@@ -279,7 +279,7 @@ control "cis_v200_2_17" {
 control "cis_v200_2_18" {
   title         = "2.18 Ensure a log monitoring and alerts are set up for usage of 'root' account"
   description   = "Real-time monitoring of API calls can be achieved by directing ActionTrail Logs to Log Service and establishing corresponding query and alarms. It is recommended that a query and alarm be established for console logins that are not protected by root login attempts."
-  query         = query.manual_control
+  query         = query.sls_alert_root_account_usage
   documentation = file("./cis_v200/docs/cis_v200_2_18.md")
 
   tags = merge(local.cis_v200_2_common_tags, {
@@ -293,7 +293,7 @@ control "cis_v200_2_18" {
 control "cis_v200_2_19" {
   title         = "2.19 Ensure a log monitoring and alerts are set up for Management Console authentication failures"
   description   = "Real-time monitoring of API calls can be achieved by directing ActionTrail Logs to Log Service and establishing corresponding query and alarms. It is recommended that a query and alarm be established for failed console authentication attempts."
-  query         = query.manual_control
+  query         = query.sls_alert_console_authentication_failures
   documentation = file("./cis_v200/docs/cis_v200_2_19.md")
 
   tags = merge(local.cis_v200_2_common_tags, {
@@ -307,7 +307,7 @@ control "cis_v200_2_19" {
 control "cis_v200_2_20" {
   title         = "2.20 Ensure a log monitoring and alerts are set up for disabling or deletion of customer created CMKs"
   description   = "Real-time monitoring of API calls can be achieved by directing ActionTrail Logs to Log Service and establishing corresponding query and alarms. It is recommended that a query and alarm be established for customer created KMSs which have changed state to disabled or deletion."
-  query         = query.manual_control
+  query         = query.sls_alert_kms_key_disable_deletion
   documentation = file("./cis_v200/docs/cis_v200_2_20.md")
 
   tags = merge(local.cis_v200_2_common_tags, {
@@ -321,7 +321,7 @@ control "cis_v200_2_20" {
 control "cis_v200_2_21" {
   title         = "2.21 Ensure a log monitoring and alerts are set up for OSS bucket policy changes"
   description   = "Real-time monitoring of API calls can be achieved by directing ActionTrail Logs to Log Service and establishing corresponding query and alarms. It is recommended that a query and alarm be established for changes to OSS bucket policies."
-  query         = query.manual_control
+  query         = query.sls_alert_oss_bucket_policy_changes
   documentation = file("./cis_v200/docs/cis_v200_2_21.md")
 
   tags = merge(local.cis_v200_2_common_tags, {
@@ -335,7 +335,7 @@ control "cis_v200_2_21" {
 control "cis_v200_2_22" {
   title         = "2.22 Ensure a log monitoring and alerts are set up for security group changes"
   description   = "Real-time monitoring of API calls can be achieved by directing ActionTrail Logs to Log Service and establishing corresponding query and alarms. Security Groups are a stateful packet filter that controls ingress and egress traffic within a VPC. It is recommended that query and alarm be established changes to Security Groups."
-  query         = query.manual_control
+  query         = query.sls_alert_security_group_changes
   documentation = file("./cis_v200/docs/cis_v200_2_22.md")
 
   tags = merge(local.cis_v200_2_common_tags, {
