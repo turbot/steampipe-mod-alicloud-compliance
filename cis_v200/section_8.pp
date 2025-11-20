@@ -9,12 +9,13 @@ benchmark "cis_v200_8" {
   documentation = file("./cis_v200/docs/cis_v200_8.md")
   children = [
     control.cis_v200_8_1,
+    control.cis_v200_8_2,
     control.cis_v200_8_3,
     control.cis_v200_8_4,
     control.cis_v200_8_5,
     control.cis_v200_8_6,
     control.cis_v200_8_7,
-    control.cis_v200_8_8,
+    control.cis_v200_8_8
   ]
 
   tags = merge(local.cis_v200_8_common_tags, {
@@ -31,6 +32,20 @@ control "cis_v200_8_1" {
 
   tags = merge(local.cis_v200_8_common_tags, {
     cis_item_id = "8.1"
+    cis_level   = "2"
+    cis_type    = "automated"
+    service     = "AliCloud/SecurityCenter"
+  })
+}
+
+control "cis_v200_8_2" {
+  title         = "8.2 Ensure that all assets are installed with security agent"
+  description   = "The endpoint protection of Security requires an agent to be installed on the endpoint to work. Such an agent-based approach allows the security center to provide a set of more comprehensive endpoint intrusion detection and protection capabilities, such as includes remote logon detection, webshell detection and removal, anomaly detection (detection of abnormal process behaviors and abnormal network connections), and detection of changes in key files and suspicious accounts in systems and applications"
+  query         = query.manual_control
+  documentation = file("./cis_v200/docs/cis_v200_8_2.md")
+
+  tags = merge(local.cis_v200_8_common_tags, {
+    cis_item_id = "8.2"
     cis_level   = "2"
     cis_type    = "automated"
     service     = "AliCloud/SecurityCenter"

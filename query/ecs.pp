@@ -195,7 +195,7 @@ query "ecs_security_center_agent_installed" {
         when sca.client_status = 'offline' then i.title || ' has Security Center agent installed but is offline.'
         else i.title || ' does not have Security Center agent installed.'
       end as reason
-      ${local.common_dimensions_sql}
+      ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "i.")}
     from
       alicloud_ecs_instance i
       left join instances_with_agent sca on i.instance_id = sca.instance_id and i.region = sca.region and i.account_id = sca.account_id;
@@ -236,7 +236,7 @@ query "ecs_instance_latest_os_patches_applied" {
         else i.title || ' has all OS patches applied - no unfixed vulnerabilities found.'
       end as reason
       ${local.tag_dimensions_sql}
-      ${local.common_dimensions_sql}
+      ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "i.")}
     from
       alicloud_ecs_instance i
       left join instances_with_unfixed_vulns iv on i.instance_id = iv.instance_id and i.region = iv.region and i.account_id = iv.account_id

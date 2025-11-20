@@ -14,8 +14,9 @@ benchmark "cis_v200_5" {
     control.cis_v200_5_4,
     control.cis_v200_5_5,
     control.cis_v200_5_6,
+    control.cis_v200_5_7,
     control.cis_v200_5_8,
-    control.cis_v200_5_9,
+    control.cis_v200_5_9
   ]
 
   tags = merge(local.cis_v200_5_common_tags, {
@@ -104,6 +105,20 @@ control "cis_v200_5_6" {
     cis_item_id = "5.6"
     cis_level   = "1"
     cis_type    = "manual"
+    service     = "AliCloud/OSS"
+  })
+}
+
+control "cis_v200_5_7" {
+  title         = "5.7 Ensure network access rule for storage bucket is not set to publicly accessible"
+  description   = "Restricting default network access helps to provide a new layer of security, since OSS accept connections from clients on any network. To limit access to selected networks, the default action must be changed."
+  query         = query.manual_control
+  documentation = file("./cis_v200/docs/cis_v200_5_7.md")
+
+  tags = merge(local.cis_v200_5_common_tags, {
+    cis_item_id = "5.2"
+    cis_level   = "2"
+    cis_type    = "automated"
     service     = "AliCloud/OSS"
   })
 }

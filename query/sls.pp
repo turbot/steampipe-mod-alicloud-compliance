@@ -1106,14 +1106,21 @@ query "sls_alert_rds_configuration_changes" {
 
 query "sls_alert_oss_permission_changes" {
   sql = <<-EOQ
-    with oss_log_check as (
+    with actiontrail_check as (
       select
-        distinct project,
-        region
+        name as trail_name,
+        account_id,
+        status,
+        sls_project_arn,
+        sls_write_role_arn,
+        home_region,
+        trail_region,
+        substring(sls_project_arn from 'acs:log:([^:]+):') as sls_region,
+        substring(sls_project_arn from 'project/([^/]+)') as sls_project_name
       from
-        alicloud_sls_logstore
+        alicloud_action_trail
       where
-        name ilike '%oss%' or name ilike '%oss_log%'
+        status = 'Enable' and sls_project_arn is not null
     ), alert_check as (
       select
         project,
@@ -1141,34 +1148,36 @@ query "sls_alert_oss_permission_changes" {
     ),
     matched_pairs as (
       select distinct
-        olc.project,
-        olc.region,
-        ac.alert_name
+        at.trail_name,
+        at.sls_region,
+        at.home_region,
+        ac.alert_name,
+        ac.region as alert_region
       from
-        oss_log_check olc
+        actiontrail_check at
         inner join alert_check ac on
-          trim(lower(coalesce(olc.project, ''))) = trim(lower(coalesce(ac.project, '')))
-          and trim(lower(coalesce(olc.region, ''))) = trim(lower(coalesce(ac.region, '')))
-          and olc.project is not null
-          and ac.project is not null
-          and olc.region is not null
+          trim(lower(coalesce(at.sls_region, ''))) = trim(lower(coalesce(ac.region, '')))
+          and at.sls_region is not null
           and ac.region is not null
+          and at.sls_region != ''
+          and ac.region != ''
     )
     select
-      'acs:sls:' || coalesce(mp.region, olc.region, '') || ':' || coalesce(mp.project, olc.project, '') || ':oss-permission-monitoring' as resource,
+      'acs:actiontrail:' || at.home_region || ':' || at.account_id || ':actiontrail/' || at.name as resource,
       case
-        when mp.alert_name is not null then 'ok'
+        when at.status = 'Enable' and at.sls_project_arn is not null and exists (select 1 from matched_pairs mp where mp.trail_name = at.name) then 'ok'
         else 'alarm'
       end as status,
       case
-        when mp.alert_name is not null then 'OSS log monitoring is configured in SLS project ' || mp.project || ' (region ' || mp.region || '), and has an OSS permission change monitoring alert configured'
-        when olc.project is not null then 'OSS logs are enabled in SLS project ' || olc.project || ' (region ' || olc.region || ') but no OSS permission change monitoring alert found. Ensure an alert is configured for PutBucket ACL or PutObjectAcl operations'
-        else 'OSS permission change monitoring alert not found. Ensure OSS logs are enabled in SLS and an alert is configured for PutBucket ACL or PutObjectAcl operations'
+        when at.status = 'Enable' and at.sls_project_arn is not null and exists (select 1 from matched_pairs mp where mp.trail_name = at.name) then at.name || ' is configured with ActionTrail enabled, delivering to SLS project in region '
+          || substring(at.sls_project_arn from 'acs:log:([^:]+):') || ', and has an OSS permission change monitoring alert configured'
+        when at.status = 'Enable' and at.sls_project_arn is not null then at.name || ' is configured with ActionTrail enabled and delivering to SLS project in region ' || substring(at.sls_project_arn from 'acs:log:([^:]+):') || ', but no OSS permission change monitoring alert found in that region'
+        when at.status = 'Enable' and at.sls_project_arn is null then at.name || ' is enabled but not configured to deliver logs to SLS'
+        else at.name || ' is not enabled'
       end as reason
       --${local.common_dimensions_sql}
     from
-      oss_log_check olc
-      left join matched_pairs mp on olc.project = mp.project and olc.region = mp.region;
+      alicloud_action_trail at;
   EOQ
 }
 

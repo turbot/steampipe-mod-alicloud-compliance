@@ -30,7 +30,7 @@ benchmark "cis_v200_2" {
     control.cis_v200_2_20,
     control.cis_v200_2_21,
     control.cis_v200_2_22,
-    control.cis_v200_2_23,
+    control.cis_v200_2_23
   ]
 
   tags = merge(local.cis_v200_2_common_tags, {
@@ -167,7 +167,7 @@ control "cis_v200_2_9" {
 control "cis_v200_2_10" {
   title         = "2.10 Ensure log monitoring and alerts are set up for RAM Role changes"
   description   = "It is recommended that a query and alarm should be established for RAM Role creation, deletion and updating activities."
-  query         = query.manual_control
+  query         = query.sls_alert_ram_role_changes
   documentation = file("./cis_v200/docs/cis_v200_2_10.md")
 
   tags = merge(local.cis_v200_2_common_tags, {
