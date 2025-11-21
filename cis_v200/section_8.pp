@@ -41,7 +41,7 @@ control "cis_v200_8_1" {
 control "cis_v200_8_2" {
   title         = "8.2 Ensure that all assets are installed with security agent"
   description   = "The endpoint protection of Security requires an agent to be installed on the endpoint to work. Such an agent-based approach allows the security center to provide a set of more comprehensive endpoint intrusion detection and protection capabilities, such as includes remote logon detection, webshell detection and removal, anomaly detection (detection of abnormal process behaviors and abnormal network connections), and detection of changes in key files and suspicious accounts in systems and applications"
-  query         = query.manual_control
+  query         = query.security_center_all_assets_installed_with_agent
   documentation = file("./cis_v200/docs/cis_v200_8_2.md")
 
   tags = merge(local.cis_v200_8_common_tags, {
