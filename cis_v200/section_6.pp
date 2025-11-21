@@ -98,7 +98,7 @@ control "cis_v200_6_5" {
 control "cis_v200_6_6" {
   title         = "6.6 Ensure RDS instance TDE protector is encrypted with BYOK (Use your own key)"
   description   = "TDE with BYOK support provides increased transparency and control, increased security with an HSM-backed KMS service, and promotion of separation of duties. With TDE, data is encrypted at rest with a symmetric key (called the database encryption key). With BYOK support for TDE, the DEK can be protected with an asymmetric key that is stored in the KMS. Based on business needs or criticality of data, it is recommended that the TDE protector is encrypted by a key that is managed by the data owner (BYOK)."
-  query         = query.rds_instance_tde_enabled
+  query         = query.rds_instance_tde_encrypted_with_byok
   documentation = file("./cis_v200/docs/cis_v200_6_6.md")
 
   tags = merge(local.cis_v200_6_common_tags, {

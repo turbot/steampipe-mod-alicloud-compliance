@@ -83,7 +83,7 @@ query "sls_alert_ram_role_changes" {
         when at.status = 'Enable' and at.sls_project_arn is null then at.name || ' is enabled but not configured to deliver logs to SLS'
         else at.name || ' is not enabled'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       alicloud_action_trail at;
   EOQ
@@ -167,7 +167,7 @@ query "sls_alert_cloud_firewall_changes" {
         when at.status = 'Enable' and at.sls_project_arn is null then at.name || ' is enabled but not configured to deliver logs to SLS'
         else at.name || ' is not enabled'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       alicloud_action_trail at;
   EOQ
@@ -255,7 +255,7 @@ query "sls_alert_vpc_route_changes" {
         when at.status = 'Enable' and at.sls_project_arn is null then at.name || ' is enabled but not configured to deliver logs to SLS'
         else at.name || ' is not enabled'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       alicloud_action_trail at;
   EOQ
@@ -353,7 +353,7 @@ query "sls_alert_vpc_changes" {
         when at.status = 'Enable' and at.sls_project_arn is null then at.name || ' is enabled but not configured to deliver logs to SLS'
         else at.name || ' is not enabled'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       alicloud_action_trail at;
   EOQ
@@ -434,7 +434,7 @@ query "sls_alert_root_account_usage" {
         when at.status = 'Enable' and at.sls_project_arn is null then at.name || ' is enabled but not configured to deliver logs to SLS'
         else at.name || ' is not enabled'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       alicloud_action_trail at;
   EOQ
@@ -526,7 +526,7 @@ query "sls_alert_oss_bucket_policy_changes" {
         when at.status = 'Enable' and at.sls_project_arn is null then at.name || ' is enabled but not configured to deliver logs to SLS'
         else at.name || ' is not enabled'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       alicloud_action_trail at;
   EOQ
@@ -625,7 +625,7 @@ query "sls_alert_security_group_changes" {
         when at.status = 'Enable' and at.sls_project_arn is null then at.name || ' is enabled but not configured to deliver logs to SLS'
         else at.name || ' is not enabled'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       alicloud_action_trail at;
   EOQ
@@ -709,7 +709,7 @@ query "sls_alert_kms_key_disable_deletion" {
         when at.status = 'Enable' and at.sls_project_arn is null then at.name || ' is enabled but not configured to deliver logs to SLS'
         else at.name || ' is not enabled'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       alicloud_action_trail at;
   EOQ
@@ -792,7 +792,7 @@ query "sls_alert_console_authentication_failures" {
         when at.status = 'Enable' and at.sls_project_arn is null then at.name || ' is enabled but not configured to deliver logs to SLS'
         else at.name || ' is not enabled'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       alicloud_action_trail at;
   EOQ
@@ -876,7 +876,7 @@ query "sls_alert_console_signin_without_mfa" {
         when at.status = 'Enable' and at.sls_project_arn is null then at.name || ' is enabled but not configured to deliver logs to SLS'
         else at.name || ' is not enabled'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       alicloud_action_trail at;
   EOQ
@@ -970,7 +970,7 @@ query "sls_alert_unauthorized_api_calls" {
         when at.status = 'Enable' and at.sls_project_arn is null then at.name || ' is enabled but not configured to deliver logs to SLS'
         else at.name || ' is not enabled'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       alicloud_action_trail at;
   EOQ
@@ -1098,7 +1098,7 @@ query "sls_alert_rds_configuration_changes" {
         when at.status = 'Enable' and at.sls_project_arn is null then at.name || ' is enabled but not configured to deliver logs to SLS'
         else at.name || ' is not enabled'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       alicloud_action_trail at;
   EOQ
@@ -1175,10 +1175,30 @@ query "sls_alert_oss_permission_changes" {
         when at.status = 'Enable' and at.sls_project_arn is null then at.name || ' is enabled but not configured to deliver logs to SLS'
         else at.name || ' is not enabled'
       end as reason
-      --${local.common_dimensions_sql}
+      ${local.common_dimensions_sql}
     from
       alicloud_action_trail at;
   EOQ
 }
 
+query "log_store_retention_period_365_days" {
+  sql = <<-EOQ
+    select
+      'acs:sls:' || region || ':' || project || ':logstore/' || name as resource,
+      case
+        when ttl = -1 then 'ok'
+        when ttl >= 365 then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when ttl = -1 then title || ' has permanent storage enabled.'
+        when ttl is null then title || ' data retention period not configured.'
+        when ttl >= 365 then title || ' data retention period set to ' || ttl || ' days.'
+        else title || ' data retention period set to ' || coalesce(ttl::text, 'unknown') || ' days, which is less than the recommended 365 days.'
+      end as reason
+      ${local.common_dimensions_sql}
+    from
+      alicloud_log_store;
+  EOQ
+}
 

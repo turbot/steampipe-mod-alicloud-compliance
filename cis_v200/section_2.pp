@@ -83,7 +83,7 @@ control "cis_v200_2_3" {
 control "cis_v200_2_4" {
   title         = "2.4 Ensure Log Service is enabled for Container Service for Kubernetes"
   description   = "Log Service shall be connected with Kubernetes clusters of Alibaba Cloud Container Service to collect the audit log for central monitoring and analysis. You can simply enable Log Service when creating a cluster for log collection."
-  query         = query.manual_control
+  query         = query.cs_kubernetes_cluster_log_service_enabled
   documentation = file("./cis_v200/docs/cis_v200_2_4.md")
 
   tags = merge(local.cis_v200_2_common_tags, {
@@ -97,7 +97,7 @@ control "cis_v200_2_4" {
 control "cis_v200_2_5" {
   title         = "2.5 Ensure virtual network flow log service is enabled"
   description   = "The flow log can be used to capture the traffic of an Elastic Network Interface (ENI), Virtual Private Cloud (VPC) or Virtual Switch (VSwitch). The flow log of a VPC or VSwitch shall be integrated with Log Service to capture the traffic of all ENIs in the VPC or VSwtich including the ENIs created after the flow log function is enabled. The traffic data captured by flow logs is stored in Log Service for real-time monitoring and analysis. A capture window is about 10 minutes, during which the traffic data is aggregated and then released to flow log record."
-  query         = query.manual_control
+  query         = query.vpc_and_vswitch_flow_log_integrated_with_log_service
   documentation = file("./cis_v200/docs/cis_v200_2_5.md")
 
   tags = merge(local.cis_v200_2_common_tags, {
@@ -349,8 +349,8 @@ control "cis_v200_2_22" {
 control "cis_v200_2_23" {
   title         = "2.23 Ensure that Logstore data retention period is set 365 days or greater"
   description   = "Ensure Activity Log Retention is set for 365 days or greater"
-  query         = query.manual_control
-  documentation = file("./cis_v200/docs/cis_v200_2_22.md")
+  query         = query.log_store_retention_period_365_days
+  documentation = file("./cis_v200/docs/cis_v200_2_23.md")
 
   tags = merge(local.cis_v200_2_common_tags, {
     cis_item_id = "2.23"

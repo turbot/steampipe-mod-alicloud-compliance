@@ -144,3 +144,41 @@ query "cs_kubernetes_cluster_cloud_monitor_enabled" {
       nodes_with_monitor cn;
   EOQ
 }
+
+query "cs_kubernetes_cluster_log_service_enabled" {
+  sql = <<-EOQ
+    with log_service_enabled as (
+      select
+        cluster_id
+      from
+        alicloud_cs_kubernetes_cluster
+      where
+        meta_data -> 'AuditProjectName' is not null
+        or meta_data -> 'ControlPlaneLogConfig' -> 'log_project' is not null
+        or exists (
+          select 1
+          from jsonb_array_elements(meta_data -> 'Addons') as a
+          where a ->> 'name' = 'loongcollector'
+            and (a -> 'config' ->> 'sls_project_name' is not null
+                 or a ->> 'config' ilike '%sls_project_name%')
+        )
+    )
+    select
+      c.arn as resource,
+      case
+        when c.state != 'running' then 'skip'
+        when ls.cluster_id is not null then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when c.state != 'running' then c.title || ' is in ' || c.state || ' state.'
+        when ls.cluster_id is not null then c.title || ' has log service enabled.'
+        else c.title || ' does not have log service enabled.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "c.")}
+    from
+      alicloud_cs_kubernetes_cluster c
+      left join log_service_enabled ls on c.cluster_id = ls.cluster_id;
+  EOQ
+}
