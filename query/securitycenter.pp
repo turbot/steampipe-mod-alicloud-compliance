@@ -32,7 +32,6 @@ query "security_center_all_assets_installed_with_agent" {
         when client_status is null then 'Asset ' || uuid || ' security center agent status unknown.'
         else 'Asset ' ||  uuid || ' security center agent status: ' || client_status || '.'
       end as reason
-      ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
     from
       alicloud_security_center_asset;

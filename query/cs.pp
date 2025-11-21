@@ -77,8 +77,8 @@ query "cs_kubernetes_cluster_private_cluster_enabled" {
       case
         when state != 'running' then title || ' is in ' || state || ' state.'
         when master_url is not null and (master_url::jsonb->>'api_server_endpoint') is not null
-          and (master_url::jsonb->>'api_server_endpoint') != '' then name || ' has a public API server endpoint configured.'
-        else name || ' is configured as a private cluster with no public API server endpoint.'
+          and (master_url::jsonb->>'api_server_endpoint') != '' then title || ' has a public API server endpoint configured.'
+        else title || ' is configured as a private cluster with no public API server endpoint.'
       end as reason
       ${local.tag_dimensions_sql}
       ${local.common_dimensions_sql}
