@@ -13,7 +13,7 @@ benchmark "cis_v200_4" {
     control.cis_v200_4_3,
     control.cis_v200_4_4,
     control.cis_v200_4_5,
-    control.cis_v200_4_6,
+    control.cis_v200_4_6
   ]
 
   tags = merge(local.cis_v200_4_common_tags, {
