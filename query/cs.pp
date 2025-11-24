@@ -124,7 +124,7 @@ query "cs_kubernetes_cluster_cloud_monitor_enabled" {
         cn._ctx,
         cn.account_id,
         cn.region
-    )select
+    ) select
       arn as resource,
       case
         when total_nodes = 0 then 'skip'

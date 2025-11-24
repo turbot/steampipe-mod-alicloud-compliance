@@ -45,7 +45,7 @@ control "cis_v200_7_2" {
   query         = query.cs_kubernetes_cluster_cloud_monitor_enabled
   documentation = file("./cis_v100/docs/cis_v100_7_2.md")
 
-  tags = merge(local.cis_v100_7_common_tags, {
+  tags = merge(local.cis_v200_7_common_tags, {
     cis_item_id = "7.2"
     cis_level   = "1"
     cis_type    = "automated"
@@ -59,7 +59,7 @@ control "cis_v200_7_3" {
   query         = query.manual_control
   documentation = file("./cis_v100/docs/cis_v100_7_3.md")
 
-  tags = merge(local.cis_v100_7_common_tags, {
+  tags = merge(local.cis_v200_7_common_tags, {
     cis_item_id = "7.3"
     cis_level   = "1"
     cis_type    = "automated"

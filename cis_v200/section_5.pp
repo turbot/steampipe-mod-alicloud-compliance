@@ -116,7 +116,7 @@ control "cis_v200_5_7" {
   documentation = file("./cis_v200/docs/cis_v200_5_7.md")
 
   tags = merge(local.cis_v200_5_common_tags, {
-    cis_item_id = "5.2"
+    cis_item_id = "5.7"
     cis_level   = "2"
     cis_type    = "automated"
     service     = "AliCloud/OSS"
