@@ -12,4 +12,10 @@ mod "alicloud_compliance" {
     description = "Run individual configuration, compliance and security controls or full compliance benchmarks for CIS across all of your Alibaba Cloud accounts using Powerpipe and Steampipe."
     image       = "/images/mods/turbot/alicloud-compliance-social-graphic.png"
   }
+
+  require {
+    plugin "alicloud" {
+      min_version = "1.5.0"
+    }
+  }
 }
