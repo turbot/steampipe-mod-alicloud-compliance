@@ -43,7 +43,7 @@ control "cis_v200_7_2" {
   title         = "7.2 Ensure CloudMonitor is set to Enabled on Kubernetes Engine Clusters"
   description   = "The monitoring service in Kubernetes Engine clusters depends on the Alibaba Cloud CloudMonitor agent to access additional system resources and application services in virtual machine instances. The monitor can access metrics about CPU utilization, some disk traffic metrics, network traffic, and disk IO information, which help to monitor signals and build operations in your Kubernetes Engine clusters."
   query         = query.cs_kubernetes_cluster_cloud_monitor_enabled
-  documentation = file("./cis_v100/docs/cis_v200_7_2.md")
+  documentation = file("./cis_v200/docs/cis_v200_7_2.md")
 
   tags = merge(local.cis_v200_7_common_tags, {
     cis_item_id = "7.2"
@@ -57,7 +57,7 @@ control "cis_v200_7_3" {
   title         = "7.3 Ensure role-based access control (RBAC) authorization is Enabled on Kubernetes Engine Clusters"
   description   = "In Kubernetes, authorizers interact by granting a permission if any authorizer grants the permission. The legacy authorizer in Kubernetes Engine grants broad, statically defined permissions. To ensure that RBAC limits permissions correctly, you must disable the legacy authorizer. RBAC has significant security advantages, can help you ensure that users only have access to specific cluster resources within their own namespace and is now stable in Kubernetes."
   query         = query.manual_control
-  documentation = file("./cis_v100/docs/cis_v200_7_3.md")
+  documentation = file("./cis_v200/docs/cis_v200_7_3.md")
 
   tags = merge(local.cis_v200_7_common_tags, {
     cis_item_id = "7.3"
