@@ -126,7 +126,7 @@ control "cis_v200_5_7" {
 control "cis_v200_5_8" {
   title         = "5.8 Ensure server-side encryption is set to 'Encrypt with Service Key'"
   description   = "Enable server-side encryption (Encrypt with Service Key) for objects."
-  query         = query.oss_bucket_encrypted_with_servcie_key
+  query         = query.oss_bucket_encrypted_with_service_key
   documentation = file("./cis_v200/docs/cis_v200_5_8.md")
 
   tags = merge(local.cis_v200_5_common_tags, {
@@ -141,7 +141,7 @@ control "cis_v200_5_9" {
   title         = "5.9 Ensure server-side encryption is set to 'Encrypt with BYOK'"
   description   = "Enable server-side encryption (Encrypt with BYOK) for objects."
   query         = query.oss_bucket_encrypted_with_byok
-  documentation = file("./cis_v200/docs/cis_v200_5_8.md")
+  documentation = file("./cis_v200/docs/cis_v200_5_9.md")
 
   tags = merge(local.cis_v200_5_common_tags, {
     cis_item_id = "5.9"
