@@ -349,8 +349,8 @@ control "cis_v100_2_22" {
 control "cis_v100_2_23" {
   title         = "2.23 Ensure that Logstore data retention period is set 365 days or greater"
   description   = "Ensure Activity Log Retention is set for 365 days or greater"
-  query         = query.manual_control
-  documentation = file("./cis_v100/docs/cis_v100_2_22.md")
+  query         = query.log_store_retention_period_365_days
+  documentation = file("./cis_v100/docs/cis_v100_2_23.md")
 
   tags = merge(local.cis_v100_2_common_tags, {
     cis_item_id = "2.23"

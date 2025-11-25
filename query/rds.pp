@@ -153,3 +153,27 @@ query "rds_instance_tde_enabled" {
       alicloud_rds_instance;
   EOQ
 }
+
+query "rds_instance_tde_encrypted_with_byok" {
+  sql = <<-EOQ
+    select
+      r.arn as resource,
+      case
+        when r.tde_status = 'Enabled' and r.tde_encryption_key is not null and k.key_id is not null and k.creator = k.account_id then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when r.tde_status != 'Enabled' then r.title || ' TDE is not enabled.'
+        when r.tde_encryption_key is null then r.title || ' TDE enabled but not using a custom key (BYOK).'
+        when k.key_id is null then r.title || ' TDE enabled with key ' || r.tde_encryption_key || ' but key not found in KMS. Verify the key exists and is accessible.'
+        when k.creator is null or k.creator != k.account_id then r.title || ' TDE enabled but encryption key is not customer-managed (BYOK). Key creator: ' || coalesce(k.creator, 'unknown') || ', Account ID: ' || coalesce(k.account_id, 'unknown')
+        when r.tde_status = 'Enabled' and r.tde_encryption_key is not null and k.creator = k.account_id then r.title || ' TDE enabled with BYOK (custom key ' || k.key_id || ').'
+        else r.title || ' TDE not configured with BYOK.'
+      end as reason
+      ${replace(local.tag_dimensions_qualifier_sql, "__QUALIFIER__", "r.")}
+      ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "r.")}
+    from
+      alicloud_rds_instance r
+      left join alicloud_kms_key k on r.tde_encryption_key = k.key_id;
+  EOQ
+}

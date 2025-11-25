@@ -13,8 +13,8 @@ query "action_trail_enabled" {
         when
           trail_region = 'All'
           and oss_bucket_name is not null
-          and sls_project_arn is not null then name ' is configured to export copies of all log entries'
-        else name ' is not configured to export copies of all log entries'
+          and sls_project_arn is not null then title || ' is configured to export copies of all log entries.'
+        else title || ' is not configured to export copies of all log entries.'
       end as reason
       ${local.common_dimensions_sql}
     from

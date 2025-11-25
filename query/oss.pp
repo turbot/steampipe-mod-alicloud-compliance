@@ -18,7 +18,7 @@ query "oss_bucket_encrypted_with_byok" {
   EOQ
 }
 
-query "oss_bucket_encrypted_with_servcie_key" {
+query "oss_bucket_encrypted_with_service_key" {
   sql = <<-EOQ
     select
       'acs:oss:::' || b.name as resource,

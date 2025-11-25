@@ -111,7 +111,7 @@ control "cis_v100_5_6" {
 control "cis_v100_5_8" {
   title         = "5.8 Ensure server-side encryption is set to 'Encrypt with Service Key'"
   description   = "Enable server-side encryption (Encrypt with Service Key) for objects."
-  query         = query.oss_bucket_encrypted_with_servcie_key
+  query         = query.oss_bucket_encrypted_with_service_key
   documentation = file("./cis_v100/docs/cis_v100_5_8.md")
 
   tags = merge(local.cis_v100_5_common_tags, {

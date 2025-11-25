@@ -136,6 +136,26 @@ query "ram_password_policy_expire_90" {
   EOQ
 }
 
+query "ram_password_policy_expire_365_or_greater" {
+  sql = <<-EOQ
+    select
+      'acs:ram::' || a.account_id as resource,
+      case
+        when max_password_age is null then 'alarm'
+        when max_password_age >= 365 then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when max_password_age is null then 'Password expiration not set.'
+        else 'Password expiration set to ' || max_password_age || ' days.'
+      end as reason
+      ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "a.")}
+    from
+      alicloud_account as a
+      left join alicloud_ram_password_policy as pol on a.account_id = pol.account_id;
+  EOQ
+}
+
 query "ram_password_policy_max_login_attempts_5" {
   sql = <<-EOQ
     select
@@ -295,5 +315,49 @@ query "ram_user_unused_90" {
       ${local.common_dimensions_global_sql}
     from
       alicloud_ram_user;
+  EOQ
+}
+
+query "ram_policy_no_full_wildcard_privileges" {
+  sql = <<-EOQ
+    with policy_statements as (
+      select
+        p.account_id,
+        p.policy_name,
+        jsonb_array_elements(coalesce(p.policy_document_std -> 'Statement', '[]'::jsonb)) as statement
+      from
+        alicloud_ram_policy as p
+    ),
+    wildcard_policies as (
+      select
+        account_id,
+        policy_name
+      from
+        policy_statements
+      where
+        lower(coalesce(statement ->> 'Effect', '')) = 'allow'
+        and (
+          (jsonb_typeof(statement -> 'Action') = 'array' and (statement -> 'Action') ?| array['*', '*:*'])
+          or (jsonb_typeof(statement -> 'Action') = 'string' and statement ->> 'Action' in ('*', '*:*'))
+        )
+        and (
+          (jsonb_typeof(statement -> 'Resource') = 'array' and (statement -> 'Resource') ? '*')
+          or (jsonb_typeof(statement -> 'Resource') = 'string' and statement ->> 'Resource' = '*')
+        )
+    )
+    select
+      'acs:ram::' || p.account_id || ':policy/' || p.policy_name as resource,
+      case
+        when w.policy_name is null then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when w.policy_name is null then p.policy_name || ' does not allow full administrative privileges.'
+        else p.policy_name || ' allows all actions on all resources.'
+      end as reason
+      ${replace(local.common_dimensions_qualifier_global_sql, "__QUALIFIER__", "p.")}
+    from
+      alicloud_ram_policy as p
+      left join wildcard_policies as w on p.account_id = w.account_id and p.policy_name = w.policy_name;
   EOQ
 }
