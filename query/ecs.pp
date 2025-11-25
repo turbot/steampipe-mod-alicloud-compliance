@@ -166,3 +166,80 @@ query "ecs_unattached_disk_encryption_enabled" {
       status = 'Available';
   EOQ
 }
+
+query "ecs_security_center_agent_installed" {
+  sql = <<-EOQ
+    with instances_with_agent as (
+      select
+        instance_id,
+        instance_name,
+        client_status,
+        client_version,
+        region,
+        account_id
+      from
+        alicloud_security_center_asset
+      where
+        client_status IN ('online', 'offline')
+    )
+    select
+      arn as resource,
+      case
+        when i.status <> 'Running' then 'skip'
+        when sca.client_status in ('online', 'offline') then 'ok'
+        else 'alarm'
+      end as status,
+      case
+        when i.status <> 'Running' then i.title || ' is not running.'
+        when sca.client_status = 'online' then i.title || ' has Security Center agent installed and online.'
+        when sca.client_status = 'offline' then i.title || ' has Security Center agent installed but is offline.'
+        else i.title || ' does not have Security Center agent installed.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "i.")}
+    from
+      alicloud_ecs_instance i
+      left join instances_with_agent sca on i.instance_id = sca.instance_id and i.region = sca.region and i.account_id = sca.account_id;
+  EOQ
+}
+
+query "ecs_instance_latest_os_patches_applied" {
+  sql = <<-EOQ
+    with instances_with_unfixed_vulns as (
+      select distinct
+        instance_id,
+        instance_name,
+        region,
+        account_id,
+        count(*) as unfixed_vulnerability_count
+      from
+        alicloud_security_center_vulnerability
+      where
+        status = 0  -- 0 = unfixed
+        and instance_id is not null
+        and instance_id != ''
+      group by
+        instance_id,
+        instance_name,
+        region,
+        account_id
+    )
+    select
+      arn as resource,
+      case
+        when i.status != 'Running' then 'skip'
+        when iv.unfixed_vulnerability_count > 0 then 'alarm'
+        else 'ok'
+      end as status,
+      case
+        when i.status != 'Running' then i.title || ' is not in running state.'
+        when iv.unfixed_vulnerability_count > 0 then i.title || ' has ' || iv.unfixed_vulnerability_count || ' unfixed vulnerabilities.'
+        else i.title || ' has all OS patches applied - no unfixed vulnerabilities found.'
+      end as reason
+      ${local.tag_dimensions_sql}
+      ${replace(local.common_dimensions_qualifier_sql, "__QUALIFIER__", "i.")}
+    from
+      alicloud_ecs_instance i
+      left join instances_with_unfixed_vulns iv on i.instance_id = iv.instance_id and i.region = iv.region and i.account_id = iv.account_id
+  EOQ
+}

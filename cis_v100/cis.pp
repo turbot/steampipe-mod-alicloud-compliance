@@ -6,7 +6,7 @@ locals {
 }
 
 benchmark "cis_v100" {
-  title         = "CIS v1.0.0"
+  title         = "Alibaba Cloud CIS v1.0.0"
   description   = "The CIS Alibaba Cloud Foundation Benchmark covers foundational elements of Alibaba Cloud. The recommendations detailed here provides prescriptive guidance for configuring security options for a subset of Alibaba Cloud services with an emphasis on foundational, testable,and architecture agnostic settings."
   documentation = file("./cis_v100/docs/cis_overview.md")
   children = [

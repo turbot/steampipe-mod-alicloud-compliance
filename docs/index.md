@@ -69,7 +69,7 @@ powerpipe benchmark list
 Run a benchmark:
 
 ```sh
-powerpipe benchmark run alicloud_compliance.benchmark.cis_v100
+powerpipe benchmark run alicloud_compliance.benchmark.cis_v200
 ```
 
 Different output formats are also available, for more information please see
@@ -89,7 +89,7 @@ vi powerpipe.ppvars
 Alternatively you can pass variables on the command line:
 
 ```sh
-powerpipe benchmark run alicloud_compliance.benchmark.cis_v100 --var 'tag_dimensions=["Environment", "Owner"]'
+powerpipe benchmark run alicloud_compliance.benchmark.cis_v200 --var 'tag_dimensions=["Environment", "Owner"]'
 ```
 
 Or through environment variables:
@@ -97,7 +97,7 @@ Or through environment variables:
 ```sh
 export PP_VAR_common_dimensions='["account_id", "connection_name", "region"]'
 export PP_VAR_tag_dimensions='["Environment", "Owner"]'
-powerpipe benchmark run alicloud_compliance.benchmark.cis_v100
+powerpipe benchmark run alicloud_compliance.benchmark.cis_v200
 ```
 
 ## Open Source & Contributing
