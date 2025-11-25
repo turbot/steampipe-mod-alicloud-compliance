@@ -1,3 +1,17 @@
+## v1.1.0 [2025-11-25]
+
+_Dependencies_
+
+- Alicloud plugin `v1.5.0` or higher is now required. ([#70](https://github.com/turbot/steampipe-mod-alicloud-compliance/pull/70))
+
+_What's new?_
+
+- Added CIS v2.0.0 benchmark (`powerpipe benchmark run alicloud_compliance.benchmark.cis_v200`). ([#70](https://github.com/turbot/steampipe-mod-alicloud-compliance/pull/70))
+
+_Enhancements_
+
+- Updated benchmark titles to use Alibaba Cloud. ([#68](https://github.com/turbot/steampipe-mod-alicloud-compliance/pull/68))
+
 ## v1.0.1 [2024-10-24]
 
 _Bug fixes_
