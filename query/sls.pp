@@ -837,9 +837,9 @@ query "sls_alert_console_signin_without_mfa" {
           or coalesce(query_obj ->> 'Query', query_obj ->> 'query', query_obj::text) ilike '%"event.eventName":%ConsoleSignin%'
         )
         and (
-          coalesce(query_obj ->> 'Query', query_obj ->> 'query', query_obj::text) ilike '%addionalEventData.loginAccount%false%'
+          coalesce(query_obj ->> 'Query', query_obj ->> 'query', query_obj::text) ilike '%additionalEventData.loginAccount%false%'
           or coalesce(query_obj ->> 'Query', query_obj ->> 'query', query_obj::text) ilike '%additionalEventData.loginAccount%false%'
-          or coalesce(query_obj ->> 'Query', query_obj ->> 'query', query_obj::text) ilike '%"addionalEventData.loginAccount":%false%'
+          or coalesce(query_obj ->> 'Query', query_obj ->> 'query', query_obj::text) ilike '%"additionalEventData.loginAccount":%false%'
           or coalesce(query_obj ->> 'Query', query_obj ->> 'query', query_obj::text) ilike '%"additionalEventData.loginAccount":%false%'
           or coalesce(query_obj ->> 'Query', query_obj ->> 'query', query_obj::text) ilike '%loginAccount%false%'
           or coalesce(query_obj ->> 'Query', query_obj ->> 'query', query_obj::text) ilike '%mfa%false%'
